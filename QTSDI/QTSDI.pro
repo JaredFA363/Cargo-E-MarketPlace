@@ -16,17 +16,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    logindialog.cpp \
-    main.cpp \
-    mainwindow.cpp
+    src/cargoregdialog.cpp \
+    src/driverregdialog.cpp \
+    src/logindialog.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/transportregdialog.cpp
 
 HEADERS += \
-    logindialog.h \
-    mainwindow.h
+    headers/cargoregdialog.h \
+    headers/driverregdialog.h \
+    headers/logindialog.h \
+    headers/mainwindow.h \
+    headers/transportregdialog.h
 
 FORMS += \
-    logindialog.ui \
-    mainwindow.ui
+    forms/cargoregdialog.ui \
+    forms/driverregdialog.ui \
+    forms/logindialog.ui \
+    forms/mainwindow.ui \
+    forms/transportregdialog.ui
+
+INCLUDEPATH += headers/
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
