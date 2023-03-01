@@ -15,6 +15,9 @@ public:
     explicit TransportRegDialog(QWidget *parent = nullptr);
     ~TransportRegDialog();
 
+private slots:
+    void on_confirm_clicked();
+
 private:
     Ui::TransportRegDialog *ui;
 };

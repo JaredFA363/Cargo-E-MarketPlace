@@ -12,3 +12,8 @@ DriverRegDialog::~DriverRegDialog()
 {
     delete ui;
 }
+
+void DriverRegDialog::on_Confirm_clicked()
+{
+
+}

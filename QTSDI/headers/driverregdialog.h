@@ -15,6 +15,9 @@ public:
     explicit DriverRegDialog(QWidget *parent = nullptr);
     ~DriverRegDialog();
 
+private slots:
+    void on_Confirm_clicked();
+
 private:
     Ui::DriverRegDialog *ui;
 };

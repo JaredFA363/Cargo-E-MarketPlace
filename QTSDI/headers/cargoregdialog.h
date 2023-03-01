@@ -15,6 +15,9 @@ public:
     explicit CargoRegDialog(QWidget *parent = nullptr);
     ~CargoRegDialog();
 
+private slots:
+    void on_Confirm_clicked();
+
 private:
     Ui::CargoRegDialog *ui;
 };

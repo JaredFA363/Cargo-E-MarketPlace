@@ -12,3 +12,8 @@ TransportRegDialog::~TransportRegDialog()
 {
     delete ui;
 }
+
+void TransportRegDialog::on_confirm_clicked()
+{
+
+}

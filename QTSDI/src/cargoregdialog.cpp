@@ -12,3 +12,8 @@ CargoRegDialog::~CargoRegDialog()
 {
     delete ui;
 }
+
+void CargoRegDialog::on_Confirm_clicked()
+{
+
+}

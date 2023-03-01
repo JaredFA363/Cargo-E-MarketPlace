@@ -32,68 +32,68 @@
      <x>40</x>
      <y>80</y>
      <width>731</width>
-     <height>491</height>
+     <height>431</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLineEdit" name="lineEdit_4">
+     <widget class="QLineEdit" name="firstname">
       <property name="text">
        <string>Firstname</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_8">
+     <widget class="QLineEdit" name="surname">
       <property name="text">
        <string>Surname</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_9">
+     <widget class="QLineEdit" name="ninumber">
       <property name="text">
        <string>Ni Number</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_7">
+     <widget class="QLineEdit" name="drivinglicense">
       <property name="text">
        <string>Driving License ID</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_6">
+     <widget class="QLineEdit" name="email">
       <property name="text">
        <string>Email</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QLineEdit" name="username">
       <property name="text">
        <string>Username</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="password">
       <property name="text">
        <string>Password</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="Mobilenumber">
       <property name="text">
        <string>Mobile Number</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QTextEdit" name="address">
       <property name="html">
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -104,6 +104,19 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="Confirm">
+   <property name="geometry">
+    <rect>
+     <x>208</x>
+     <y>540</y>
+     <width>251</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Confirm</string>
+   </property>
   </widget>
  </widget>
  <resources/>
