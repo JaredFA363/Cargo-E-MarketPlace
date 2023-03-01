@@ -2,6 +2,8 @@
 #define CARGOREGDIALOG_H
 
 #include <QDialog>
+#include <QtSql>
+#include "logindialog.h"
 
 namespace Ui {
 class CargoRegDialog;
@@ -17,6 +19,8 @@ public:
 
 private slots:
     void on_Confirm_clicked();
+
+    void on_ToLogin_clicked();
 
 private:
     Ui::CargoRegDialog *ui;

@@ -17,3 +17,10 @@ void DriverRegDialog::on_Confirm_clicked()
 {
 
 }
+
+void DriverRegDialog::on_ToLogin_clicked()
+{
+    hide();
+    LoginDialog *loginDialog = new LoginDialog(this);
+    loginDialog->show();
+}

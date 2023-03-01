@@ -6,15 +6,15 @@ LoginDialog::LoginDialog(QWidget *parent) :
     ui(new Ui::LoginDialog)
 {
     ui->setupUi(this);
+
+    ui->Login_comboBox->addItem("Transportation Company");
+    ui->Login_comboBox->addItem("Driver");
+    ui->Login_comboBox->addItem("Cargo Company");
 }
 
 LoginDialog::~LoginDialog()
 {
     delete ui;
-
-    ui->Login_comboBox->addItem("Transportation Company");
-    ui->Login_comboBox->addItem("Driver");
-    ui->Login_comboBox->addItem("Cargo Company");
 }
 
 void LoginDialog::on_Login_pushButton_clicked()

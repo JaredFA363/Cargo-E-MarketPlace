@@ -2,6 +2,8 @@
 #define TRANSPORTREGDIALOG_H
 
 #include <QDialog>
+#include <QtSql>
+#include "logindialog.h"
 
 namespace Ui {
 class TransportRegDialog;
@@ -17,6 +19,8 @@ public:
 
 private slots:
     void on_confirm_clicked();
+
+    void on_ToLogin_clicked();
 
 private:
     Ui::TransportRegDialog *ui;

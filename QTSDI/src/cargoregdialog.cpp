@@ -17,3 +17,10 @@ void CargoRegDialog::on_Confirm_clicked()
 {
 
 }
+
+void CargoRegDialog::on_ToLogin_clicked()
+{
+    hide();
+    LoginDialog *loginDialog = new LoginDialog(this);
+    loginDialog->show();
+}

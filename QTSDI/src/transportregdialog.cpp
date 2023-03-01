@@ -17,3 +17,10 @@ void TransportRegDialog::on_confirm_clicked()
 {
 
 }
+
+void TransportRegDialog::on_ToLogin_clicked()
+{
+    hide();
+    LoginDialog *loginDialog = new LoginDialog(this);
+    loginDialog->show();
+}
