@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/cargoregdialog.cpp \
+    src/dbcon.cpp \
     src/driverregdialog.cpp \
     src/logindialog.cpp \
     src/main.cpp \
@@ -29,7 +30,8 @@ HEADERS += \
     headers/driverregdialog.h \
     headers/logindialog.h \
     headers/mainwindow.h \
-    headers/transportregdialog.h
+    headers/transportregdialog.h \
+    headers/dbcon.h
 
 FORMS += \
     forms/cargoregdialog.ui \

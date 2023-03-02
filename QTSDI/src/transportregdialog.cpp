@@ -15,7 +15,7 @@ TransportRegDialog::~TransportRegDialog()
 
 void TransportRegDialog::on_confirm_clicked()
 {
-
+    dbcon();
 }
 
 void TransportRegDialog::on_ToLogin_clicked()
