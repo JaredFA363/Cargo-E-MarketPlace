@@ -2,12 +2,11 @@
 
 dbcon::dbcon()
 {
-    QSqlDatabase regdb;
-    regdb = QSqlDatabase::addDatabase("QSQLITE");
-    regdb.setDatabaseName("/home/jared/SDI_group_B6/reg.db");
-    regdb.open();
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("/home/jared/SDI_group_B6/db.db");
+    db.open();
 
-    if (!regdb.open())
+    if (!db.open())
     {
         qDebug()<<"problem opening database";
     }
@@ -30,6 +29,9 @@ dbcon::dbcon()
     qry.exec();
     if( !qry.exec() )
         qDebug() << qry.lastError();
-
-    regdb.close();
+    db.close();
+    db.removeDatabase(QSqlDatabase::defaultConnection);
 }
+
+
+
