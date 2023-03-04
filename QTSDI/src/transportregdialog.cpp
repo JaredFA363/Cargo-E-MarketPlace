@@ -17,11 +17,6 @@ TransportRegDialog::~TransportRegDialog()
 
 void TransportRegDialog::on_confirm_clicked()
 {
-    QString companyname = ui->company_name->text();
-    QString input_address = ui->address->toPlainText();
-    QString input_password = ui->password->text();
-    QString input_username = ui->username->text();
-
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("/home/jared/SDI_group_B6/db.db");
     db.open();
@@ -39,15 +34,18 @@ void TransportRegDialog::on_confirm_clicked()
         qDebug() << qry.lastError();
     else
     {
-        QSqlQuery qry;
-        qry.prepare("INSERT INTO transportcompany(username VARCHAR(30) UNIQUE PRIMARY KEY, company_name VARCHAR(30), password VARCHAR(30), address VARCHAR(100)"
+        qry.prepare("INSERT INTO transportcompany(username, company_name, password, address)"
                     "VALUES (?,?,?,?)");
+        QString companyname = ui->company_name->text();
+        QString input_address = ui->address->toPlainText();
+        QString input_password = ui->password->text();
+        QString input_username = ui->username->text();
         qry.addBindValue(input_username);
         qry.addBindValue(companyname);
         qry.addBindValue(input_password);
         qry.addBindValue(input_address);
-        std::cout << "saved";
-        //db.removeDatabase(QSqlDatabase::defaultConnection);
+        qry.exec();
+
         hide();
         LoginDialog *loginDialog = new LoginDialog(this);
         loginDialog->show();
