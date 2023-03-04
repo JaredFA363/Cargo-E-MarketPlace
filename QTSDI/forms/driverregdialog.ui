@@ -16,8 +16,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>40</y>
+     <x>510</x>
+     <y>50</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -29,66 +29,66 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>80</y>
-     <width>731</width>
-     <height>431</height>
+     <x>210</x>
+     <y>90</y>
+     <width>651</width>
+     <height>421</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QLineEdit" name="firstname">
       <property name="text">
-       <string>Firstname</string>
+       <string/>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="surname">
       <property name="text">
-       <string>Surname</string>
+       <string/>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="ninumber">
       <property name="text">
-       <string>Ni Number</string>
+       <string/>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="drivinglicense">
       <property name="text">
-       <string>Driving License ID</string>
+       <string/>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="email">
       <property name="text">
-       <string>Email</string>
+       <string/>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="username">
       <property name="text">
-       <string>Username</string>
+       <string/>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="password">
       <property name="text">
-       <string>Password</string>
+       <string/>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="Mobilenumber">
       <property name="text">
-       <string>Mobile Number</string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -99,7 +99,7 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Address&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
@@ -108,8 +108,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="Confirm">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>530</y>
+     <x>280</x>
+     <y>520</y>
      <width>251</width>
      <height>25</height>
     </rect>
@@ -121,7 +121,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="ToLogin">
    <property name="geometry">
     <rect>
-     <x>550</x>
+     <x>590</x>
      <y>530</y>
      <width>221</width>
      <height>21</height>
@@ -129,6 +129,123 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Already Registered</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>100</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Firstname</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>130</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Surname</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>160</y>
+     <width>81</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>NI Number</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>190</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Driving License</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>220</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Email</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>250</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Username</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>280</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Password</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>310</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Mobile</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>380</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Address</string>
    </property>
   </widget>
  </widget>
