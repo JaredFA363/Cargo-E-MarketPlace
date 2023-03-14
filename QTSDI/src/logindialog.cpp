@@ -1,5 +1,6 @@
 #include "logindialog.h"
 #include "ui_logindialog.h"
+#include "userform.h"
 
 LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),
@@ -44,6 +45,9 @@ void LoginDialog::on_Login_pushButton_clicked()
             if (db_pass == password)
             {
                 QMessageBox::information(this,"Login","Success");
+                hide();
+                userform *userForm = new userform(this);
+                userForm->show();
             }
             else
             {
@@ -64,6 +68,9 @@ void LoginDialog::on_Login_pushButton_clicked()
             if (db_pass == password)
             {
                 QMessageBox::information(this,"Login","Success");
+                hide();
+                userform *userForm = new userform(this);
+                userForm->show();
             }
             else
             {
@@ -84,6 +91,9 @@ void LoginDialog::on_Login_pushButton_clicked()
             if (db_pass == password)
             {
                 QMessageBox::information(this,"Login","Success");
+                hide();
+                userform *userForm = new userform(this);
+                userForm->show();
             }
             else
             {

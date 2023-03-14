@@ -9,6 +9,9 @@ class dbcon
 {
 public:
      dbcon();
+     QSqlDatabase db;
+     bool openConn();
+     void discConn();
 };
 
 #endif // DBCON_H

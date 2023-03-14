@@ -23,7 +23,8 @@ SOURCES += \
     src/logindialog.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/transportregdialog.cpp
+    src/transportregdialog.cpp \
+    src/userform.cpp
 
 HEADERS += \
     headers/cargoregdialog.h \
@@ -31,14 +32,16 @@ HEADERS += \
     headers/logindialog.h \
     headers/mainwindow.h \
     headers/transportregdialog.h \
-    headers/dbcon.h
+    headers/dbcon.h \
+    headers/userform.h
 
 FORMS += \
     forms/cargoregdialog.ui \
     forms/driverregdialog.ui \
     forms/logindialog.ui \
     forms/mainwindow.ui \
-    forms/transportregdialog.ui
+    forms/transportregdialog.ui \
+    forms/userform.ui
 
 INCLUDEPATH += headers/
 
