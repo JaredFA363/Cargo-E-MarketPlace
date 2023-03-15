@@ -40,11 +40,15 @@ void TransportRegDialog::on_confirm_clicked()
         QString input_address = ui->address->toPlainText();
         QString input_password = ui->password->text();
         QString input_username = ui->username->text();
-        qry.addBindValue(input_username);
-        qry.addBindValue(companyname);
-        qry.addBindValue(input_password);
-        qry.addBindValue(input_address);
-        qry.exec();
+        try{
+            qry.addBindValue(input_username);
+            qry.addBindValue(companyname);
+            qry.addBindValue(input_password);
+            qry.addBindValue(input_address);
+            qry.exec();
+        }catch(QSqlError e){
+            throw new QSqlError;
+        }
 
         hide();
         LoginDialog *loginDialog = new LoginDialog(this);

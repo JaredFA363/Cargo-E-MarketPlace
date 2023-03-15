@@ -37,6 +37,7 @@ void DriverRegDialog::on_Confirm_clicked()
     {
         qry.prepare("INSERT INTO drivers(username, firstname, surname, password, address, email, mobile, ninum, driverid)"
                     "VALUES(?,?,?,?,?,?,?,?,?)");
+
         QString in_firstname=ui->firstname->text();
         QString in_surname=ui->surname->text();
         QString in_username=ui->username->text();
@@ -46,16 +47,21 @@ void DriverRegDialog::on_Confirm_clicked()
         QString in_address = ui->address->toPlainText();
         QString in_ninum=ui->ninumber->text();
         QString in_driverid=ui->drivinglicense->text();
-        qry.addBindValue(in_username);
-        qry.addBindValue(in_firstname);
-        qry.addBindValue(in_surname);
-        qry.addBindValue(in_password);
-        qry.addBindValue(in_address);
-        qry.addBindValue(in_email);
-        qry.addBindValue(in_mobile);
-        qry.addBindValue(in_ninum);
-        qry.addBindValue(in_driverid);
-        qry.exec();
+
+        try{
+            qry.addBindValue(in_username);
+            qry.addBindValue(in_firstname);
+            qry.addBindValue(in_surname);
+            qry.addBindValue(in_password);
+            qry.addBindValue(in_address);
+            qry.addBindValue(in_email);
+            qry.addBindValue(in_mobile);
+            qry.addBindValue(in_ninum);
+            qry.addBindValue(in_driverid);
+            qry.exec();
+        }catch(QSqlError e){
+            throw new QSqlError;
+        }
 
         hide();
         LoginDialog *loginDialog = new LoginDialog(this);
