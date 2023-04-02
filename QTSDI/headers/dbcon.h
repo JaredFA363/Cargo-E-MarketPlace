@@ -12,6 +12,7 @@ public:
      QSqlDatabase db;
      bool openConn();
      void discConn();
+     void createTables();
 };
 
 #endif // DBCON_H

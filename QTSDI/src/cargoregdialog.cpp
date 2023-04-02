@@ -18,42 +18,34 @@ void CargoRegDialog::on_Confirm_clicked()
     dbcon *dbconnection = new dbcon();
     dbconnection->openConn();
 
-    QString query = "CREATE TABLE IF NOT EXISTS cargoowner (username VARCHAR(30) UNIQUE PRIMARY KEY, firstname VARCHAR(30), surname VARCHAR(30), password VARCHAR(30), address VARCHAR(100), email VARCHAR(30), mobile VARCHAR(14))";
+    dbconnection->createTables();
     QSqlQuery qry;
-    qry.prepare(query);
-    qry.exec(query);
-    if( !qry.exec(query) )
-    {
-        qDebug() << qry.lastError();
-    }
-    else
-    {
-        qry.prepare("INSERT INTO cargoowner(username, firstname, surname, password, address, email, mobile)"
-        "VALUES (?,?,?,?,?,?,?)");
-        QString in_firstname=ui->firstname->text();
-        QString in_surname=ui->surname->text();
-        QString in_username=ui->username->text();
-        QString in_email=ui->email->text();
-        QString in_password=ui->password->text();
-        QString in_mobile=ui->mobilenumber->text();
-        QString in_address = ui->address->toPlainText();
-        try{
-            qry.addBindValue(in_username);
-            qry.addBindValue(in_firstname);
-            qry.addBindValue(in_surname);
-            qry.addBindValue(in_password);
-            qry.addBindValue(in_address);
-            qry.addBindValue(in_email);
-            qry.addBindValue(in_mobile);
-            qry.exec();
-        }catch(QSqlError e){
-            throw new QSqlError;
-        }
 
-        hide();
-        LoginDialog *loginDialog = new LoginDialog(this);
-        loginDialog->show();
+    qry.prepare("INSERT INTO cargoowner(username, firstname, surname, password, address, email, mobile)"
+    "VALUES (?,?,?,?,?,?,?)");
+    QString in_firstname=ui->firstname->text();
+    QString in_surname=ui->surname->text();
+    QString in_username=ui->username->text();
+    QString in_email=ui->email->text();
+    QString in_password=ui->password->text();
+    QString in_mobile=ui->mobilenumber->text();
+    QString in_address = ui->address->toPlainText();
+    try{
+        qry.addBindValue(in_username);
+        qry.addBindValue(in_firstname);
+        qry.addBindValue(in_surname);
+        qry.addBindValue(in_password);
+        qry.addBindValue(in_address);
+        qry.addBindValue(in_email);
+        qry.addBindValue(in_mobile);
+        qry.exec();
+    }catch(QSqlError e){
+        throw new QSqlError;
     }
+
+    hide();
+    LoginDialog *loginDialog = new LoginDialog(this);
+    loginDialog->show();
 
     dbconnection->discConn();
 }
