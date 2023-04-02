@@ -17,14 +17,9 @@ TransportRegDialog::~TransportRegDialog()
 
 void TransportRegDialog::on_confirm_clicked()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/jared/SDI_group_B6/db.db");
-    db.open();
 
-    if (!db.open())
-    {
-        qDebug()<<"problem opening database";
-    }
+    dbcon *dbconnection = new dbcon();
+    dbconnection->openConn();
 
     QSqlQuery qry;
     QString query =  "CREATE TABLE IF NOT EXISTS transportcompany (username VARCHAR(30) UNIQUE PRIMARY KEY, company_name VARCHAR(30), password VARCHAR(30), address VARCHAR(100))";
@@ -54,7 +49,7 @@ void TransportRegDialog::on_confirm_clicked()
         LoginDialog *loginDialog = new LoginDialog(this);
         loginDialog->show();
     }
-    db.close();
+    dbconnection->discConn();
 }
 
 void TransportRegDialog::on_ToLogin_clicked()

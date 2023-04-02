@@ -20,14 +20,8 @@ LoginDialog::~LoginDialog()
 
 void LoginDialog::on_Login_pushButton_clicked()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/jared/SDI_group_B6/db.db");
-    db.open();
-
-    if (!db.open())
-    {
-        qDebug()<<"problem opening database";
-    }
+    dbcon *dbconnection = new dbcon();
+    dbconnection->openConn();
 
     QString acc_type = ui->Login_comboBox->currentText();
     QString username = ui->Login_username->text();
@@ -105,4 +99,5 @@ void LoginDialog::on_Login_pushButton_clicked()
             QMessageBox::information(this,"Login","Incorrect Username");
         }
     }
+    dbconnection->discConn();
 }

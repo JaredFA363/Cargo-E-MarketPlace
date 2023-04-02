@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QtSql>
 #include "logindialog.h"
+#include "dbcon.h"
 
 namespace Ui {
 class CargoRegDialog;
