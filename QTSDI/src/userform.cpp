@@ -19,3 +19,8 @@ void userform::on_Logout_clicked()
     LoginDialog *loginDialog = new LoginDialog(this);
     loginDialog->show();
 }
+
+void userform::on_profile_clicked()
+{
+
+}

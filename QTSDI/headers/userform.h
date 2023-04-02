@@ -19,6 +19,8 @@ public:
 private slots:
     void on_Logout_clicked();
 
+    void on_profile_clicked();
+
 private:
     Ui::userform *ui;
 };
