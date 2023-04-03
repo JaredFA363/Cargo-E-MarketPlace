@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "logindialog.h"
+#include "profile.h"
 
 namespace Ui {
 class userform;

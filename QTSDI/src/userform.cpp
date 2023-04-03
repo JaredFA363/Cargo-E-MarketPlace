@@ -22,5 +22,7 @@ void userform::on_Logout_clicked()
 
 void userform::on_profile_clicked()
 {
-
+    hide();
+    profile *Profile = new profile(this);
+    Profile->show();
 }
