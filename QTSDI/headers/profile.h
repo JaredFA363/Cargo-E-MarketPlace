@@ -4,7 +4,6 @@
 #include <QDialog>
 #include <QtSql>
 #include "logindialog.h"
-#include "userform.h"
 
 namespace Ui {
 class profile;
