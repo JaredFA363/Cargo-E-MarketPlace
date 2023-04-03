@@ -16,3 +16,10 @@ profile::~profile()
 {
     delete ui;
 }
+
+void profile::on_profile_back_clicked()
+{
+    hide();
+    userform *userForm = new userform(this);
+    userForm->show();
+}

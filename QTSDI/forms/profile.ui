@@ -24,35 +24,35 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLineEdit" name="lineEdit"/>
+     <widget class="QLineEdit" name="profileEdit0"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_4"/>
+     <widget class="QLineEdit" name="profileEdit1"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_7"/>
+     <widget class="QLineEdit" name="profileEdit2"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_8"/>
+     <widget class="QLineEdit" name="profileEdit3"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_9"/>
+     <widget class="QLineEdit" name="profileEdit4"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_6"/>
+     <widget class="QLineEdit" name="profileEdit5"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_5"/>
+     <widget class="QLineEdit" name="profileEdit6"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_3"/>
+     <widget class="QLineEdit" name="profileEdit7"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_2"/>
+     <widget class="QLineEdit" name="profileEdit8"/>
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="profile_back">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -62,10 +62,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Back</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="profile_save">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -75,7 +75,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Save</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">

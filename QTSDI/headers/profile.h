@@ -2,6 +2,9 @@
 #define PROFILE_H
 
 #include <QDialog>
+#include <QtSql>
+#include "logindialog.h"
+#include "userform.h"
 
 namespace Ui {
 class profile;
@@ -14,6 +17,9 @@ class profile : public QDialog
 public:
     explicit profile(QWidget *parent = nullptr);
     ~profile();
+
+private slots:
+    void on_profile_back_clicked();
 
 private:
     Ui::profile *ui;
