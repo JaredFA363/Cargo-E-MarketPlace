@@ -17,12 +17,14 @@ class LoginDialog : public QDialog
 public:
     explicit LoginDialog(QWidget *parent = nullptr);
     ~LoginDialog();
+    QString getUserType();
 
 private slots:
     void on_Login_pushButton_clicked();
 
 private:
     Ui::LoginDialog *ui;
+    //QString getUserType();
 };
 
 #endif // LOGINDIALOG_H

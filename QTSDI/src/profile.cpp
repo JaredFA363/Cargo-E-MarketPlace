@@ -6,6 +6,10 @@ profile::profile(QWidget *parent) :
     ui(new Ui::profile)
 {
     ui->setupUi(this);
+
+    LoginDialog *loginDialog = new LoginDialog(this);
+    QString acc_type,username = loginDialog->getUserType();
+
 }
 
 profile::~profile()

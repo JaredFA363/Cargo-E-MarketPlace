@@ -39,6 +39,8 @@ void LoginDialog::on_Login_pushButton_clicked()
     QString db_pass;
     QSqlQuery query;
 
+    //profile *profilefind = new profile();
+
     if (acc_type == "Transportation Company")
     {
         if(query.exec("SELECT password FROM transportcompany WHERE username ="+username_1+""))
@@ -109,4 +111,11 @@ void LoginDialog::on_Login_pushButton_clicked()
         }
     }
     dbconnection->discConn();
+}
+
+QString LoginDialog::getUserType()
+{
+    QString acc_type = ui->Login_comboBox->currentText();
+    QString username = ui->Login_username->text();
+    return acc_type,username;
 }

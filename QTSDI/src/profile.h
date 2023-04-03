@@ -2,6 +2,8 @@
 #define PROFILE_H
 
 #include <QDialog>
+#include <QtSql>
+#include "logindialog.h"
 
 namespace Ui {
 class profile;
