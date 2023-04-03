@@ -18,6 +18,15 @@ LoginDialog::~LoginDialog()
     delete ui;
 }
 
+/*
+ *
+ * \brief Login Function
+ *
+ * \details This Function allows users (Cargo Owner, Transportation Company, Driver)
+ *          to login. Takes the inputs then compares it with the database.
+ *          If correct allows user to enter program, if not throws error.
+*/
+
 void LoginDialog::on_Login_pushButton_clicked()
 {
     dbcon *dbconnection = new dbcon();

@@ -13,6 +13,15 @@ DriverRegDialog::~DriverRegDialog()
     delete ui;
 }
 
+/*
+ *
+ * \brief Driver Registration Function
+ *
+ * \details The Driver should be able to add there details to the database.
+ *          The function establishes the connection eith the database.
+ *          Collects the inputs from the user and then stores it in the database.
+*/
+
 void DriverRegDialog::on_Confirm_clicked()
 {
 

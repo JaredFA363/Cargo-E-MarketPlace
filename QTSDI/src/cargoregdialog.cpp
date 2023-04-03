@@ -13,6 +13,15 @@ CargoRegDialog::~CargoRegDialog()
     delete ui;
 }
 
+/*
+ *
+ * \brief Cargo Owner Registration Function
+ *
+ * \details The Cargo owner should be able to add there details to the database.
+ *          The function establishes the connection eith the database.
+ *          Collects the inputs from the user and then stores it in the database.
+*/
+
 void CargoRegDialog::on_Confirm_clicked()
 {
     dbcon *dbconnection = new dbcon();

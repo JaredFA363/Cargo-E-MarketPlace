@@ -15,6 +15,15 @@ TransportRegDialog::~TransportRegDialog()
     delete ui;
 }
 
+/*
+ *
+ * \brief Transportation Company Registration Function
+ *
+ * \details The Cargo owner should be able to add there details to the database.
+ *          The function establishes the connection eith the database.
+ *          Collects the inputs from the user and then stores it in the database.
+*/
+
 void TransportRegDialog::on_confirm_clicked()
 {
 
