@@ -5,6 +5,16 @@ dbcon::dbcon()
 
 }
 
+/*
+ *
+ * \brief Open Connection Function
+ *
+ * \details This function opens the connection to the database for other functions.
+ *          This is reused in the application
+ *
+ * \return True or False
+*/
+
 bool dbcon::openConn()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -23,12 +33,28 @@ bool dbcon::openConn()
     }
 }
 
+/*
+ *
+ * \brief Disconnect Connection Function
+ *
+ * \details This function disconnects the database connection.
+ *          This is resused multiple times in the program.
+*/
+
 void dbcon::discConn()
 {
     db.close();
     db.removeDatabase(QSqlDatabase::defaultConnection);
     qDebug()<<"Connection removed";
 }
+
+/*
+ *
+ * \brief Create Tables Function
+ *
+ * \details This function creates the base tables in the database.
+ *          For if the program is run on different devices.
+*/
 
 void dbcon::createTables()
 {
