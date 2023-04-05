@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QtSql>
+#include "dbcon.h"
 #include "logindialog.h"
 
 namespace Ui {
@@ -22,6 +23,8 @@ private slots:
 
 private:
     Ui::profile *ui;
+
+    void loadDetails();
 };
 
 #endif // PROFILE_H

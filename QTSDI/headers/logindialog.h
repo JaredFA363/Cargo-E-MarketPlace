@@ -1,6 +1,7 @@
 #ifndef LOGINDIALOG_H
 #define LOGINDIALOG_H
 
+#include <QObject>
 #include <QDialog>
 #include <QtSql>
 #include <QMessageBox>
@@ -17,14 +18,15 @@ class LoginDialog : public QDialog
 public:
     explicit LoginDialog(QWidget *parent = nullptr);
     ~LoginDialog();
-    QString getUserType();
+    QString loginAccountType;
+    QString loginUsername;
 
 private slots:
     void on_Login_pushButton_clicked();
 
 private:
     Ui::LoginDialog *ui;
-    //QString getUserType();
+
 };
 
 #endif // LOGINDIALOG_H

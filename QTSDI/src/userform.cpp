@@ -26,3 +26,4 @@ void userform::on_profile_clicked()
     profile *Profile = new profile(this);
     Profile->show();
 }
+

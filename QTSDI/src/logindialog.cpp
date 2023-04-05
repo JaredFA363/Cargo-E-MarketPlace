@@ -31,7 +31,6 @@ void LoginDialog::on_Login_pushButton_clicked()
 {
     dbcon *dbconnection = new dbcon();
     dbconnection->openConn();
-
     QString acc_type = ui->Login_comboBox->currentText();
     QString username = ui->Login_username->text();
     QString password = ui->Login_password->text();
@@ -39,7 +38,8 @@ void LoginDialog::on_Login_pushButton_clicked()
     QString db_pass;
     QSqlQuery query;
 
-    //profile *profilefind = new profile();
+    loginUsername = username;
+    loginAccountType = acc_type;
 
     if (acc_type == "Transportation Company")
     {
@@ -113,9 +113,4 @@ void LoginDialog::on_Login_pushButton_clicked()
     dbconnection->discConn();
 }
 
-QString LoginDialog::getUserType()
-{
-    QString acc_type = ui->Login_comboBox->currentText();
-    QString username = ui->Login_username->text();
-    return acc_type,username;
-}
+
