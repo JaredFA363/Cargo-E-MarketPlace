@@ -66,6 +66,8 @@ void dbcon::createTables()
         qry.prepare(query1);
         QString query2 = "CREATE TABLE IF NOT EXISTS cargoowner (username VARCHAR(30) UNIQUE PRIMARY KEY, firstname VARCHAR(30), surname VARCHAR(30), password VARCHAR(30), address VARCHAR(100), email VARCHAR(30), mobile VARCHAR(14))";
         qry.prepare(query2);
+        QString query3 = "CREATE TABLE IF NOT EXISTS orders (orderid INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT DEFAULT 1, source VARCHAR(30), destination VARCHAR(30), weight VARCHAR(30), condition VARCHAR(30), transportcompany VARCHAR(30), orderstatus VARCHAR(20))";
+        qry.prepare(query3);
         qry.exec();
         if( !qry.exec() )
         {

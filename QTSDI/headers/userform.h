@@ -23,12 +23,13 @@ private slots:
 
     void on_profile_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::userform *ui;
     QString account;
     QString log_user;
     void changeOrderStatus(QString);
-    void changeOrderId(QString);
     void setVars(QString, QString);
 };
 
