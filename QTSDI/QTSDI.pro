@@ -24,6 +24,7 @@ SOURCES += \
     src/main.cpp \
     src/mainwindow.cpp \
     src/profile.cpp \
+    src/transportcompanyview.cpp \
     src/transportregdialog.cpp \
     src/userform.cpp
 
@@ -35,7 +36,8 @@ HEADERS += \
     headers/transportregdialog.h \
     headers/dbcon.h \
     headers/userform.h \
-    headers/profile.h \
+    headers/profile.h \ \
+    headers/transportcompanyview.h
 
 FORMS += \
     forms/cargoregdialog.ui \
@@ -44,7 +46,8 @@ FORMS += \
     forms/mainwindow.ui \
     forms/transportregdialog.ui \
     forms/userform.ui \
-    forms/profile.ui
+    forms/profile.ui \
+    forms/transportcompanyview.ui
 
 INCLUDEPATH += headers/
 
