@@ -33,3 +33,13 @@ void userform::setVars(QString acc, QString user)
     log_user = user;
     account = acc;
 }
+
+void userform::changeOrderStatus(QString new_status)
+{
+    ui->status->setText(new_status);
+}
+
+void userform::changeOrderId(QString orderId)
+{
+    ui->Orderid->setText(orderId);
+}
