@@ -18,8 +18,6 @@ class LoginDialog : public QDialog
 public:
     explicit LoginDialog(QWidget *parent = nullptr);
     ~LoginDialog();
-    QString loginAccountType;
-    QString loginUsername;
 
 private slots:
     void on_Login_pushButton_clicked();

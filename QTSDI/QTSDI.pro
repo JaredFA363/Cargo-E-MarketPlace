@@ -35,7 +35,7 @@ HEADERS += \
     headers/transportregdialog.h \
     headers/dbcon.h \
     headers/userform.h \
-    headers/profile.h
+    headers/profile.h \
 
 FORMS += \
     forms/cargoregdialog.ui \

@@ -1,11 +1,12 @@
 #include "userform.h"
 #include "ui_userform.h"
 
-userform::userform(QWidget *parent) :
+userform::userform(QString acc, QString user, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::userform)
 {
     ui->setupUi(this);
+    setVars(acc,user);
 }
 
 userform::~userform()
@@ -23,7 +24,12 @@ void userform::on_Logout_clicked()
 void userform::on_profile_clicked()
 {
     hide();
-    profile *Profile = new profile(this);
+    profile *Profile = new profile(account, log_user, this);
     Profile->show();
 }
 
+void userform::setVars(QString acc, QString user)
+{
+    log_user = user;
+    account = acc;
+}

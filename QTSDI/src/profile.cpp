@@ -4,12 +4,13 @@
 #include <iostream>
 #include <QDebug>
 
-profile::profile(QWidget *parent) :
+profile::profile(QString acc, QString user, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::profile)
 {
     ui->setupUi(this);
-    loadDetails();
+    setVars(acc,user);
+    getDetails();
 }
 
 profile::~profile()
@@ -17,14 +18,15 @@ profile::~profile()
     delete ui;
 }
 
-void profile::loadDetails()
+void profile::getDetails()
 {
 
-    QString acc_type = "Transportation Company";
-    QString username = "t";
+    QString username = retrieved_username;
+    QString acc_type = retrieved_accountType;
+    //QString username = user;
 
-    qDebug() << acc_type;
     QString username_profile = "'"+username+"'";
+
     dbcon *dbconnection = new dbcon();
     dbconnection->openConn();
 
@@ -71,18 +73,19 @@ void profile::loadDetails()
             ui->profileEdit8->setText(query.value(8).toString());
         }
     }
-    else
-    {
-        ui->profileEdit0->setText("yu");
-    }
     dbconnection->discConn();
 }
 
 void profile::on_profile_back_clicked()
 {
     hide();
-    userform *userForm = new userform(this);
+    userform *userForm = new userform(retrieved_accountType, retrieved_username, this);
     userForm->show();
 }
 
-
+void profile::setVars(QString acc_type, QString username)
+{
+    retrieved_username = username;
+    retrieved_accountType = acc_type;
+    qDebug() << retrieved_accountType;
+}

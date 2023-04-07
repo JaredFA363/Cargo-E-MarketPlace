@@ -1,6 +1,7 @@
 #include "logindialog.h"
 #include "ui_logindialog.h"
 #include "userform.h"
+#include "globals.h"
 
 LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),
@@ -31,17 +32,14 @@ void LoginDialog::on_Login_pushButton_clicked()
 {
     dbcon *dbconnection = new dbcon();
     dbconnection->openConn();
-    QString acc_type = ui->Login_comboBox->currentText();
+    QString account_type = ui->Login_comboBox->currentText();
     QString username = ui->Login_username->text();
     QString password = ui->Login_password->text();
     QString username_1 = "'"+username+"'";
     QString db_pass;
     QSqlQuery query;
 
-    loginUsername = username;
-    loginAccountType = acc_type;
-
-    if (acc_type == "Transportation Company")
+    if (account_type == "Transportation Company")
     {
         if(query.exec("SELECT password FROM transportcompany WHERE username ="+username_1+""))
         {
@@ -51,7 +49,10 @@ void LoginDialog::on_Login_pushButton_clicked()
             {
                 QMessageBox::information(this,"Login","Success");
                 hide();
-                userform *userForm = new userform(this);
+                //profile *Profile = new profile(account_type, username, this);
+                //Profile->setVars(account_type,username);
+                //Profile->show();
+                userform *userForm = new userform(account_type, username, this);
                 userForm->show();
             }
             else
@@ -64,7 +65,7 @@ void LoginDialog::on_Login_pushButton_clicked()
             QMessageBox::information(this,"Login","Incorrect Username");
         }
     }
-    else if (acc_type == "Driver")
+    else if (account_type == "Driver")
     {
         if(query.exec("SELECT password FROM drivers WHERE username ="+username_1+""))
         {
@@ -74,7 +75,7 @@ void LoginDialog::on_Login_pushButton_clicked()
             {
                 QMessageBox::information(this,"Login","Success");
                 hide();
-                userform *userForm = new userform(this);
+                userform *userForm = new userform(account_type, username, this);
                 userForm->show();
             }
             else
@@ -87,7 +88,7 @@ void LoginDialog::on_Login_pushButton_clicked()
             QMessageBox::information(this,"Login","Incorrect Username");
         }
     }
-    else if (acc_type == "Cargo Company")
+    else if (account_type == "Cargo Company")
     {
         if(query.exec("SELECT password FROM cargoowner WHERE username ="+username_1+""))
         {
@@ -97,7 +98,7 @@ void LoginDialog::on_Login_pushButton_clicked()
             {
                 QMessageBox::information(this,"Login","Success");
                 hide();
-                userform *userForm = new userform(this);
+                userform *userForm = new userform(account_type, username, this);
                 userForm->show();
             }
             else
@@ -112,5 +113,3 @@ void LoginDialog::on_Login_pushButton_clicked()
     }
     dbconnection->discConn();
 }
-
-

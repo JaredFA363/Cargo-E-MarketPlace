@@ -5,6 +5,7 @@
 #include <QtSql>
 #include "dbcon.h"
 #include "logindialog.h"
+#include "globals.h"
 
 namespace Ui {
 class profile;
@@ -15,16 +16,19 @@ class profile : public QDialog
     Q_OBJECT
 
 public:
-    explicit profile(QWidget *parent = nullptr);
+    explicit profile(QString, QString,QWidget *parent = nullptr);
     ~profile();
+    void getDetails();
+    void setVars(QString,QString);
 
 private slots:
     void on_profile_back_clicked();
 
 private:
     Ui::profile *ui;
+    QString retrieved_username;
+    QString retrieved_accountType;
 
-    void loadDetails();
 };
 
 #endif // PROFILE_H
