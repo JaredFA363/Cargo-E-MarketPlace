@@ -1,21 +1,20 @@
-#include "transportcompanyview.h"
-#include "ui_transportcompanyview.h"
+#include "driverview.h"
+#include "ui_driverview.h"
 
-transportcompanyview::transportcompanyview(QString acc, QString user, QWidget *parent) :
+driverview::driverview(QString acc, QString user, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::transportcompanyview)
+    ui(new Ui::driverview)
 {
     ui->setupUi(this);
     retrieved_acc = acc;
     retrieved_user = user;
-    QString companyname = "'"+retrieved_user+"'";
 
     dbcon *dbconnection = new dbcon();
     dbconnection->openConn();
 
     QSqlQuery query;
     try{
-        query.prepare("SELECT * FROM orders WHERE orderstatus = 'Order Placed' AND transportcompany = "+companyname+"");
+        query.prepare("SELECT * FROM orders WHERE orderstatus = 'Transportation Company Accepted'");
         query.exec();
         QSqlQueryModel *modal = new QSqlQueryModel;
         modal->setQuery(query);
@@ -29,25 +28,19 @@ transportcompanyview::transportcompanyview(QString acc, QString user, QWidget *p
     dbconnection->discConn();
 }
 
-transportcompanyview::~transportcompanyview()
+driverview::~driverview()
 {
     delete ui;
 }
 
-
-void transportcompanyview::on_accept_clicked()
-{
-    QString orderid = ui->orderId->text();
-}
-
-void transportcompanyview::on_profile_clicked()
+void driverview::on_profile_clicked()
 {
     hide();
     profile *Profile = new profile(retrieved_acc, retrieved_user, this);
     Profile->show();
 }
 
-void transportcompanyview::on_logout_clicked()
+void driverview::on_logout_clicked()
 {
     hide();
     LoginDialog *loginDialog = new LoginDialog(this);

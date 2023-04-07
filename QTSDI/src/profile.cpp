@@ -3,6 +3,8 @@
 #include "userform.h"
 #include <iostream>
 #include <QDebug>
+#include "transportcompanyview.h"
+#include "driverview.h"
 
 profile::profile(QString acc, QString user, QWidget *parent) :
     QDialog(parent),
@@ -78,8 +80,18 @@ void profile::getDetails()
 void profile::on_profile_back_clicked()
 {
     hide();
-    userform *userForm = new userform(retrieved_accountType, retrieved_username, this);
-    userForm->show();
+    if(retrieved_accountType == "Transportation Company"){
+        transportcompanyview *transview = new transportcompanyview(retrieved_accountType, retrieved_username, this);
+        transview->show();
+    }
+    else if(retrieved_accountType == "Cargo Company"){
+        userform *userForm = new userform(retrieved_accountType, retrieved_username, this);
+        userForm->show();
+    }
+    else if(retrieved_accountType == "Driver"){
+        driverview *Driver = new driverview(retrieved_accountType, retrieved_username, this);
+        Driver->show();
+    }
 }
 
 void profile::setVars(QString acc_type, QString username)
