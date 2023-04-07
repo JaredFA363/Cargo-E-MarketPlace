@@ -108,7 +108,6 @@ void profile::change_details()
 
         try{
             query.prepare("UPDATE transportcompany SET username = :in_username, password = :in_pass, address = :in_address, company_name = :in_company_name WHERE username = :old_username");
-            //query.bindValue(":accountType",retrieved_accountType);
             query.bindValue(":in_username",username);
             query.bindValue(":in_pass",password);
             query.bindValue(":in_address",address);
@@ -122,11 +121,61 @@ void profile::change_details()
     }
     else if(retrieved_accountType == "Cargo Company")
     {
+        QString username = ui->profileEdit0->text();
+        QString password = ui->profileEdit1->text();
+        QString address = ui->profileEdit2->text();
+        QString firstname = ui->profileEdit3->text();
+        QString surname = ui->profileEdit4->text();
+        QString email = ui->profileEdit5->text();
+        QString mobile = ui->profileEdit6->text();
 
+        try{
+            query.prepare("UPDATE cargoowner SET username = :in_username, password = :in_pass, address = :in_address, firstname = :in_firstname, surname = :in_surname, email = :in_email, mobile = :in_mobile WHERE username = :old_username");
+            query.bindValue(":in_username",username);
+            query.bindValue(":in_pass",password);
+            query.bindValue(":in_address",address);
+            query.bindValue(":in_firstname",firstname);
+            query.bindValue(":in_surname",surname);
+            query.bindValue(":in_email",email);
+            query.bindValue(":in_mobile",mobile);
+            query.bindValue(":old_username",retrieved_username);
+            query.exec();
+            retrieved_username = username;
+        }catch(QSqlError e){
+            throw new QSqlError;
+        }
     }
     else if(retrieved_accountType == "Driver")
     {
+        QString username = ui->profileEdit0->text();
+        QString password = ui->profileEdit1->text();
+        QString address = ui->profileEdit2->text();
+        QString firstname = ui->profileEdit3->text();
+        QString surname = ui->profileEdit4->text();
+        QString email = ui->profileEdit5->text();
+        QString mobile = ui->profileEdit6->text();
+        QString ninum = ui->profileEdit7->text();
+        QString driverid = ui->profileEdit8->text();
 
+        try{
+            query.prepare("UPDATE drivers SET username = :in_username, password = :in_pass, address = :in_address, firstname = :in_firstname, surname = :in_surname, email = :in_email, mobile = :in_mobile, ninum = :in_ninum, driverid = :in_driverid WHERE username = :old_username");
+            query.bindValue(":in_username",username);
+            query.bindValue(":in_pass",password);
+            query.bindValue(":in_address",address);
+            query.bindValue(":in_firstname",firstname);
+            query.bindValue(":in_surname",surname);
+            query.bindValue(":in_email",email);
+            query.bindValue(":in_mobile",mobile);
+            query.bindValue(":in_ninum",ninum);
+            query.bindValue(":in_driverid",driverid);
+            query.bindValue(":old_username",retrieved_username);
+            query.exec();
+            qDebug() << retrieved_username;
+            retrieved_username = username;
+            qDebug() << retrieved_username;
+        }catch(QSqlError e){
+            throw new QSqlError;
+        }
     }
     dbconnection->discConn();
 }
