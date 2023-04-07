@@ -1,7 +1,6 @@
 #include "logindialog.h"
 #include "ui_logindialog.h"
 #include "userform.h"
-#include "globals.h"
 
 LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),
@@ -49,9 +48,6 @@ void LoginDialog::on_Login_pushButton_clicked()
             {
                 QMessageBox::information(this,"Login","Success");
                 hide();
-                //profile *Profile = new profile(account_type, username, this);
-                //Profile->setVars(account_type,username);
-                //Profile->show();
                 userform *userForm = new userform(account_type, username, this);
                 userForm->show();
             }

@@ -23,7 +23,6 @@ void profile::getDetails()
 
     QString username = retrieved_username;
     QString acc_type = retrieved_accountType;
-    //QString username = user;
 
     QString username_profile = "'"+username+"'";
 
@@ -88,4 +87,51 @@ void profile::setVars(QString acc_type, QString username)
     retrieved_username = username;
     retrieved_accountType = acc_type;
     qDebug() << retrieved_accountType;
+}
+
+void profile::change_details()
+{
+    QString new_username = "'"+retrieved_username+"'";
+    QString new_accountType = "'"+retrieved_accountType+"'";
+
+    dbcon *dbconnection = new dbcon();
+    dbconnection->openConn();
+
+    QSqlQuery query;
+
+    if(retrieved_accountType == "Transportation Company")
+    {
+        QString username = ui->profileEdit0->text();
+        QString password = ui->profileEdit1->text();
+        QString address = ui->profileEdit2->text();
+        QString company_name = ui->profileEdit3->text();
+
+        try{
+            query.prepare("UPDATE transportcompany SET username = :in_username, password = :in_pass, address = :in_address, company_name = :in_company_name WHERE username = :old_username");
+            //query.bindValue(":accountType",retrieved_accountType);
+            query.bindValue(":in_username",username);
+            query.bindValue(":in_pass",password);
+            query.bindValue(":in_address",address);
+            query.bindValue(":in_company_name",company_name);
+            query.bindValue(":old_username",retrieved_username);
+            query.exec();
+            retrieved_username = username;
+        }catch(QSqlError e){
+            throw new QSqlError;
+        }
+    }
+    else if(retrieved_accountType == "Cargo Company")
+    {
+
+    }
+    else if(retrieved_accountType == "Driver")
+    {
+
+    }
+    dbconnection->discConn();
+}
+
+void profile::on_profile_save_clicked()
+{
+    change_details();
 }
