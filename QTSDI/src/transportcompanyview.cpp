@@ -20,7 +20,7 @@ transportcompanyview::transportcompanyview(QString acc, QString user, QWidget *p
         QSqlQueryModel *modal = new QSqlQueryModel;
         modal->setQuery(query);
 
-    ui->tableView->setModel(modal);
+        ui->tableView->setModel(modal);
     }
     catch(QSqlError e){
         throw new QSqlError;
@@ -38,6 +38,23 @@ transportcompanyview::~transportcompanyview()
 void transportcompanyview::on_accept_clicked()
 {
     QString orderid = ui->orderId->text();
+
+    dbcon *dbconnection = new dbcon();
+    dbconnection->openConn();
+
+    QSqlQuery query;
+
+    try{
+        query.prepare("UPDATE orders SET orderstatus = 'Transportation Company Accepted'  WHERE orderid = "+orderid+"");
+        query.exec();
+        userform *Userform = new userform(retrieved_acc,retrieved_user,this);
+        Userform->changeOrderStatus("Transportation Company Accepted");
+    }
+    catch(QSqlError e){
+        throw new QSqlError;
+        QMessageBox::information(this,"Order","No Such Order Available");
+    }
+    dbconnection->discConn();
 }
 
 void transportcompanyview::on_profile_clicked()

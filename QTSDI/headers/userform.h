@@ -16,7 +16,7 @@ class userform : public QDialog
 public:
     explicit userform(QString acc, QString user, QWidget *parent = nullptr);
     ~userform();
-    //void setVars(QString, QString);
+    void changeOrderStatus(QString);
 
 private slots:
     void on_Logout_clicked();
@@ -29,7 +29,7 @@ private:
     Ui::userform *ui;
     QString account;
     QString log_user;
-    void changeOrderStatus(QString);
+    //void changeOrderStatus(QString);
     void setVars(QString, QString);
 };
 

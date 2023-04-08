@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "profile.h"
 #include "logindialog.h"
+#include "userform.h"
 
 namespace Ui {
 class driverview;
@@ -22,10 +23,15 @@ private slots:
 
     void on_logout_clicked();
 
+    void on_accept_clicked();
+
+    void on_reject_clicked();
+
 private:
     Ui::driverview *ui;
     QString retrieved_acc;
     QString retrieved_user;
+    int rejectedOrders[];
 };
 
 #endif // DRIVERVIEW_H

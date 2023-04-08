@@ -5,6 +5,7 @@
 #include <logindialog.h>
 #include <profile.h>
 #include <QtSql>
+#include "userform.h"
 
 namespace Ui {
 class transportcompanyview;
