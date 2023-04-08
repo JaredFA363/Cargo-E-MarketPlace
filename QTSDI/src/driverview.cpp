@@ -73,6 +73,29 @@ void driverview::on_accept_clicked()
 void driverview::on_reject_clicked()
 {
     QString orderid = ui->orderid->text();
-    int int_orderid = orderid.toInt();
-    qDebug() << int_orderid;
+    rejectedOrders.append(orderid);
+    qDebug() << rejectedOrders;
+
+    QString rejectedOrdersStr = "'"+rejectedOrders.join("','")+"'";
+
+    dbcon *dbconnection = new dbcon();
+    dbconnection->openConn();
+
+    QSqlQuery query;
+
+    try{
+        query.prepare("SELECT * FROM orders WHERE orderid NOT IN ("+ rejectedOrdersStr+")");
+        query.exec();
+        QSqlQueryModel *modal = new QSqlQueryModel;
+        modal->setQuery(query);
+
+        ui->tableView->setModel(modal);
+
+    }
+    catch(QSqlError e){
+        throw new QSqlError;
+        QMessageBox::information(this,"Order","No Such Order Available");
+    }
+    dbconnection->discConn();
+
 }

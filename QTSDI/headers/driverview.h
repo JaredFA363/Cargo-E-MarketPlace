@@ -31,7 +31,7 @@ private:
     Ui::driverview *ui;
     QString retrieved_acc;
     QString retrieved_user;
-    int rejectedOrders[];
+    QStringList rejectedOrders;
 };
 
 #endif // DRIVERVIEW_H
