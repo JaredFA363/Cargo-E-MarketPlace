@@ -3,6 +3,7 @@
 #include "userform.h"
 #include "transportcompanyview.h"
 #include "driverview.h"
+#include "transportregdialog.h"
 
 LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),
@@ -37,6 +38,9 @@ void LoginDialog::on_Login_pushButton_clicked()
     QString username = ui->Login_username->text();
     QString password = ui->Login_password->text();
     QString username_1 = "'"+username+"'";
+    TransportRegDialog *transReg = new TransportRegDialog(this);
+    QString hashed_password = transReg->hash_Password(password);
+
     QString db_pass;
     QSqlQuery query;
 
@@ -46,7 +50,7 @@ void LoginDialog::on_Login_pushButton_clicked()
         {
             query.first();
             QString db_pass = query.value(0).toString();
-            if (db_pass == password)
+            if (db_pass == hashed_password)
             {
                 QMessageBox::information(this,"Login","Success");
                 hide();
@@ -69,7 +73,7 @@ void LoginDialog::on_Login_pushButton_clicked()
         {
             query.first();
             QString db_pass = query.value(0).toString();
-            if (db_pass == password)
+            if (db_pass == hashed_password)
             {
                 QMessageBox::information(this,"Login","Success");
                 hide();
@@ -92,7 +96,7 @@ void LoginDialog::on_Login_pushButton_clicked()
         {
             query.first();
             QString db_pass = query.value(0).toString();
-            if (db_pass == password)
+            if (db_pass == hashed_password)
             {
                 QMessageBox::information(this,"Login","Success");
                 hide();

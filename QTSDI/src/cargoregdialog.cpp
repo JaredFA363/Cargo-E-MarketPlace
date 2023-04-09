@@ -39,11 +39,15 @@ void CargoRegDialog::on_Confirm_clicked()
     QString in_password=ui->password->text();
     QString in_mobile=ui->mobilenumber->text();
     QString in_address = ui->address->toPlainText();
+
+    TransportRegDialog *transReg = new TransportRegDialog(this);
+    QString hashed_password = transReg->hash_Password(in_password);
+
     try{
         qry.addBindValue(in_username);
         qry.addBindValue(in_firstname);
         qry.addBindValue(in_surname);
-        qry.addBindValue(in_password);
+        qry.addBindValue(hashed_password);
         qry.addBindValue(in_address);
         qry.addBindValue(in_email);
         qry.addBindValue(in_mobile);

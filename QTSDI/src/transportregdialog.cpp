@@ -1,7 +1,5 @@
 #include "transportregdialog.h"
 #include "ui_transportregdialog.h"
-#include <iostream>
-
 
 TransportRegDialog::TransportRegDialog(QWidget *parent) :
     QDialog(parent),
@@ -39,10 +37,11 @@ void TransportRegDialog::on_confirm_clicked()
     QString input_address = ui->address->toPlainText();
     QString input_password = ui->password->text();
     QString input_username = ui->username->text();
+    QString hashed_password = hash_Password(input_password);
     try{
         qry.addBindValue(input_username);
         qry.addBindValue(companyname);
-        qry.addBindValue(input_password);
+        qry.addBindValue(hashed_password);
         qry.addBindValue(input_address);
         qry.exec();
     }catch(QSqlError e){
@@ -61,4 +60,11 @@ void TransportRegDialog::on_ToLogin_clicked()
     hide();
     LoginDialog *loginDialog = new LoginDialog(this);
     loginDialog->show();
+}
+
+QString TransportRegDialog::hash_Password(QString password)
+{
+    QByteArray hashData = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256);
+    QString hash_password = QString::fromLatin1(hashData.toHex());
+    return hash_password;
 }
