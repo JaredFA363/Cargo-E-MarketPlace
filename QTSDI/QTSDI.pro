@@ -27,6 +27,8 @@ SOURCES += \
     src/profile.cpp \
     src/transportcompanyview.cpp \
     src/transportregdialog.cpp \
+    src/updatedatabasethread.cpp \
+    src/updateorderstatusthread.cpp \
     src/userform.cpp
 
 HEADERS += \
@@ -39,7 +41,9 @@ HEADERS += \
     headers/userform.h \
     headers/profile.h \ \
     headers/transportcompanyview.h \
-    headers/driverview.h
+    headers/driverview.h \
+    headers/updateorderstatusthread.h \
+    headers/updatedatabasethread.h
 
 FORMS += \
     forms/cargoregdialog.ui \

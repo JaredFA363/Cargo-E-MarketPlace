@@ -5,6 +5,8 @@
 #include "profile.h"
 #include "logindialog.h"
 #include "userform.h"
+#include "updatedatabasethread.h"
+#include "updateorderstatusthread.h"
 
 namespace Ui {
 class driverview;
@@ -27,11 +29,14 @@ private slots:
 
     void on_reject_clicked();
 
+    void on_update_clicked();
+
 private:
     Ui::driverview *ui;
     QString retrieved_acc;
     QString retrieved_user;
     QStringList rejectedOrders;
+    QString order_id;
 };
 
 #endif // DRIVERVIEW_H

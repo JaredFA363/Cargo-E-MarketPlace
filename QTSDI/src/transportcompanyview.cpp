@@ -38,23 +38,32 @@ transportcompanyview::~transportcompanyview()
 void transportcompanyview::on_accept_clicked()
 {
     QString orderid = ui->orderId->text();
+    QString updated_status = "Transportation Company Accepted";
 
     dbcon *dbconnection = new dbcon();
     dbconnection->openConn();
 
-    QSqlQuery query;
-
-    try{
-        query.prepare("UPDATE orders SET orderstatus = 'Transportation Company Accepted'  WHERE orderid = "+orderid+"");
-        query.exec();
-        userform *Userform = new userform(retrieved_acc,retrieved_user,this);
-        Userform->changeOrderStatus("Transportation Company Accepted");
-    }
-    catch(QSqlError e){
-        throw new QSqlError;
-        QMessageBox::information(this,"Order","No Such Order Available");
-    }
+    QSqlQuery qry;
+    qry.prepare("SELECT source FROM orders WHERE orderid = "+orderid+"");
+    qry.exec();
     dbconnection->discConn();
+    if(qry.first() == false)
+    {
+        QMessageBox::information(this,"Order","INcorrect order id");
+    }
+    else if (qry.first() == true){
+        QMessageBox::information(this,"Order","Forwarded to available drivers");
+
+        UpdateDatabaseThread* updateDatabaseThread = new UpdateDatabaseThread();
+        updateDatabaseThread->orderid = orderid;
+        updateDatabaseThread->updated_status = updated_status;
+        updateDatabaseThread->start();
+
+        UpdateOrderStatusThread* updateOrderStatusThread = new UpdateOrderStatusThread();
+        updateOrderStatusThread->updated_status = updated_status;
+        updateOrderStatusThread->userForm = new userform(retrieved_acc, retrieved_user, this);
+        updateOrderStatusThread->start();
+    }
 }
 
 void transportcompanyview::on_profile_clicked()
@@ -69,4 +78,27 @@ void transportcompanyview::on_logout_clicked()
     hide();
     LoginDialog *loginDialog = new LoginDialog(this);
     loginDialog->show();
+}
+
+void transportcompanyview::on_update_clicked()
+{
+    QString companyname = "'"+retrieved_user+"'";
+
+    dbcon *dbconnection = new dbcon();
+    dbconnection->openConn();
+
+    QSqlQuery qry;
+
+    try{
+        qry.prepare("SELECT * FROM orders WHERE orderstatus = 'Order Placed' AND transportcompany = "+companyname+"");
+        qry.exec();
+        QSqlQueryModel *modal = new QSqlQueryModel;
+        modal->setQuery(qry);
+
+        ui->tableView->setModel(modal);
+    }
+    catch(QSqlError e){
+        throw new QSqlError;
+    }
+    dbconnection->discConn();
 }

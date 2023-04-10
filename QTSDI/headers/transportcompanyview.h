@@ -6,6 +6,8 @@
 #include <profile.h>
 #include <QtSql>
 #include "userform.h"
+#include "updatedatabasethread.h"
+#include "updateorderstatusthread.h"
 
 namespace Ui {
 class transportcompanyview;
@@ -25,6 +27,8 @@ private slots:
     void on_profile_clicked();
 
     void on_logout_clicked();
+
+    void on_update_clicked();
 
 private:
     Ui::transportcompanyview *ui;

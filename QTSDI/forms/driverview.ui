@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>918</width>
-    <height>505</height>
+    <width>970</width>
+    <height>556</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QTableView" name="tableView">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>40</x>
      <y>60</y>
-     <width>691</width>
-     <height>331</height>
+     <width>911</width>
+     <height>281</height>
     </rect>
    </property>
   </widget>
@@ -39,7 +39,7 @@
   <widget class="QPushButton" name="logout">
    <property name="geometry">
     <rect>
-     <x>710</x>
+     <x>810</x>
      <y>20</y>
      <width>89</width>
      <height>25</height>
@@ -52,8 +52,8 @@
   <widget class="QPushButton" name="accept">
    <property name="geometry">
     <rect>
-     <x>610</x>
-     <y>410</y>
+     <x>600</x>
+     <y>360</y>
      <width>131</width>
      <height>31</height>
     </rect>
@@ -78,9 +78,9 @@
   <widget class="QLineEdit" name="orderid">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>414</y>
-     <width>471</width>
+     <x>40</x>
+     <y>360</y>
+     <width>461</width>
      <height>31</height>
     </rect>
    </property>
@@ -89,13 +89,49 @@
    <property name="geometry">
     <rect>
      <x>780</x>
-     <y>414</y>
-     <width>101</width>
+     <y>360</y>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>Reject </string>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tableView_2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>440</y>
+     <width>841</width>
+     <height>101</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>400</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Active Order</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="update">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>480</y>
+     <width>51</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Update</string>
    </property>
   </widget>
  </widget>

@@ -38,19 +38,28 @@ void TransportRegDialog::on_confirm_clicked()
     QString input_password = ui->password->text();
     QString input_username = ui->username->text();
     QString hashed_password = hash_Password(input_password);
-    try{
-        qry.addBindValue(input_username);
-        qry.addBindValue(companyname);
-        qry.addBindValue(hashed_password);
-        qry.addBindValue(input_address);
-        qry.exec();
-    }catch(QSqlError e){
-        throw new QSqlError;
-    }
 
-    hide();
-    LoginDialog *loginDialog = new LoginDialog(this);
-    loginDialog->show();
+    if (companyname == "" || input_address== "" || input_password== "" || input_username== "")
+    {
+        QMessageBox::information(this,"Register","Empty Values");
+    }
+    else
+    {
+        try{
+            qry.addBindValue(input_username);
+            qry.addBindValue(companyname);
+            qry.addBindValue(hashed_password);
+            qry.addBindValue(input_address);
+            qry.exec();
+        }catch(QSqlError e){
+            throw new QSqlError;
+            QMessageBox::information(this,"Register","Incorrect Value");
+        }
+
+        hide();
+        LoginDialog *loginDialog = new LoginDialog(this);
+        loginDialog->show();
+    }
 
     dbconnection->discConn();
 }

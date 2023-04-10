@@ -5,6 +5,7 @@
 #include <QDebug>
 #include "transportcompanyview.h"
 #include "driverview.h"
+#include "transportregdialog.h"
 
 profile::profile(QString acc, QString user, QWidget *parent) :
     QDialog(parent),
@@ -109,6 +110,8 @@ void profile::change_details()
     dbcon *dbconnection = new dbcon();
     dbconnection->openConn();
 
+    TransportRegDialog *transreg = new TransportRegDialog(this);
+
     QSqlQuery query;
 
     if(retrieved_accountType == "Transportation Company")
@@ -118,10 +121,12 @@ void profile::change_details()
         QString address = ui->profileEdit2->text();
         QString company_name = ui->profileEdit3->text();
 
+        QString hashed_password = transreg->hash_Password(password);
+
         try{
             query.prepare("UPDATE transportcompany SET username = :in_username, password = :in_pass, address = :in_address, company_name = :in_company_name WHERE username = :old_username");
             query.bindValue(":in_username",username);
-            query.bindValue(":in_pass",password);
+            query.bindValue(":in_pass",hashed_password);
             query.bindValue(":in_address",address);
             query.bindValue(":in_company_name",company_name);
             query.bindValue(":old_username",retrieved_username);
@@ -141,10 +146,12 @@ void profile::change_details()
         QString email = ui->profileEdit5->text();
         QString mobile = ui->profileEdit6->text();
 
+        QString hashed_password = transreg->hash_Password(password);
+
         try{
             query.prepare("UPDATE cargoowner SET username = :in_username, password = :in_pass, address = :in_address, firstname = :in_firstname, surname = :in_surname, email = :in_email, mobile = :in_mobile WHERE username = :old_username");
             query.bindValue(":in_username",username);
-            query.bindValue(":in_pass",password);
+            query.bindValue(":in_pass",hashed_password);
             query.bindValue(":in_address",address);
             query.bindValue(":in_firstname",firstname);
             query.bindValue(":in_surname",surname);
@@ -169,10 +176,12 @@ void profile::change_details()
         QString ninum = ui->profileEdit7->text();
         QString driverid = ui->profileEdit8->text();
 
+        QString hashed_password = transreg->hash_Password(password);
+
         try{
             query.prepare("UPDATE drivers SET username = :in_username, password = :in_pass, address = :in_address, firstname = :in_firstname, surname = :in_surname, email = :in_email, mobile = :in_mobile, ninum = :in_ninum, driverid = :in_driverid WHERE username = :old_username");
             query.bindValue(":in_username",username);
-            query.bindValue(":in_pass",password);
+            query.bindValue(":in_pass",hashed_password);
             query.bindValue(":in_address",address);
             query.bindValue(":in_firstname",firstname);
             query.bindValue(":in_surname",surname);

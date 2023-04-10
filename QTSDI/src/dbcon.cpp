@@ -60,13 +60,28 @@ void dbcon::createTables()
 {
     try{
         QSqlQuery qry;
-        QString query = "CREATE TABLE IF NOT EXISTS drivers (username VARCHAR(30) UNIQUE PRIMARY KEY, firstname VARCHAR(30), surname VARCHAR(30), password VARCHAR(30), address VARCHAR(100), email VARCHAR(30), mobile VARCHAR(14), ninum VARCHAR(10), driverid VARCHAR(15))";
+        QString query = "CREATE TABLE IF NOT EXISTS drivers (username VARCHAR(30) UNIQUE NOT NULL PRIMARY KEY, firstname VARCHAR(30) NOT NULL, surname VARCHAR(30) NOT NULL, password VARCHAR(30) NOT NULL, address VARCHAR(100) NOT NULL, email VARCHAR(30) NOT NULL, mobile VARCHAR(11) NOT NULL, ninum VARCHAR(10) NOT NULL, driverid VARCHAR(15) NOT NULL)";
         qry.prepare(query);
-        QString query1 =  "CREATE TABLE IF NOT EXISTS transportcompany (username VARCHAR(30) UNIQUE PRIMARY KEY, company_name VARCHAR(30), password VARCHAR(30), address VARCHAR(100))";
+        qry.exec();
+        if( !qry.exec() )
+        {
+            qDebug() << qry.lastError();
+        }
+        QString query1 =  "CREATE TABLE IF NOT EXISTS transportcompany (username VARCHAR(30) UNIQUE NOT NULL PRIMARY KEY, company_name VARCHAR(30) NOT NULL, password VARCHAR(30) NOT NULL, address VARCHAR(100) NOT NULL)";
         qry.prepare(query1);
-        QString query2 = "CREATE TABLE IF NOT EXISTS cargoowner (username VARCHAR(30) UNIQUE PRIMARY KEY, firstname VARCHAR(30), surname VARCHAR(30), password VARCHAR(30), address VARCHAR(100), email VARCHAR(30), mobile VARCHAR(14))";
+        qry.exec();
+        if( !qry.exec() )
+        {
+            qDebug() << qry.lastError();
+        }
+        QString query2 = "CREATE TABLE IF NOT EXISTS cargoowner (username VARCHAR(30) UNIQUE NOT NULL PRIMARY KEY, firstname VARCHAR(30) NOT NULL, surname VARCHAR(30) NOT NULL, password VARCHAR(30) NOT NULL, address VARCHAR(100) NOT NULL, email VARCHAR(30) NOT NULL, mobile VARCHAR(14) NOT NULL)";
         qry.prepare(query2);
-        QString query3 = "CREATE TABLE IF NOT EXISTS orders (orderid INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT DEFAULT 1, source VARCHAR(30), destination VARCHAR(30), weight VARCHAR(30), condition VARCHAR(30), transportcompany VARCHAR(30), orderstatus VARCHAR(20))";
+        qry.exec();
+        if( !qry.exec() )
+        {
+            qDebug() << qry.lastError();
+        }
+        QString query3 = "CREATE TABLE IF NOT EXISTS orders (orderid INTEGER UNIQUE NOT NULL PRIMARY KEY AUTOINCREMENT DEFAULT 1, source VARCHAR(30) NOT NULL, destination VARCHAR(30) NOT NULL, weight VARCHAR(30) NOT NULL, dimensions VARCHAR(20) NOT NULL, condition VARCHAR(30) NOT NULL, transportcompany VARCHAR(30) NOT NULL, orderstatus VARCHAR(20) NOT NULL)";
         qry.prepare(query3);
         qry.exec();
         if( !qry.exec() )

@@ -45,12 +45,13 @@ void userform::on_pushButton_clicked()
     QString in_source = ui->source->text();
     QString in_destination = ui->destination->text();
     QString in_weight = ui->weight->text();
+    QString in_dimensions = ui->dimensions->text();
     QString in_condition = ui->condition->text();
     QString in_transCompany = ui->transCompany->text();
 
     QString transCompany = "'"+in_transCompany+"'";
 
-    if(in_source == "" || in_destination == "" || in_weight == "" || in_condition == "" || in_transCompany == "")
+    if(in_source == "" || in_destination == "" || in_weight == "" || in_condition == "" || in_transCompany == "" || in_dimensions == "")
     {
         QMessageBox::information(this,"Order","Invalid input");
     }
@@ -68,18 +69,20 @@ void userform::on_pushButton_clicked()
         }
         else{
             QSqlQuery qry;
-            qry.prepare("INSERT INTO orders(source, destination, weight, condition, transportcompany, orderstatus)"
-                        "VALUES (?,?,?,?,?,?)");
+            qry.prepare("INSERT INTO orders(source, destination, weight, dimensions, condition, transportcompany, orderstatus)"
+                        "VALUES (?,?,?,?,?,?,?)");
             try{
                 qry.addBindValue(in_source);
                 qry.addBindValue(in_destination);
                 qry.addBindValue(in_weight);
+                qry.addBindValue(in_dimensions);
                 qry.addBindValue(in_condition);
                 qry.addBindValue(in_transCompany);
                 qry.addBindValue("Order Placed");
                 qry.exec();
 
                 changeOrderStatus("Order Placed");
+
             }catch(QSqlError e){
                 throw new QSqlError;
             }

@@ -43,22 +43,30 @@ void CargoRegDialog::on_Confirm_clicked()
     TransportRegDialog *transReg = new TransportRegDialog(this);
     QString hashed_password = transReg->hash_Password(in_password);
 
-    try{
-        qry.addBindValue(in_username);
-        qry.addBindValue(in_firstname);
-        qry.addBindValue(in_surname);
-        qry.addBindValue(hashed_password);
-        qry.addBindValue(in_address);
-        qry.addBindValue(in_email);
-        qry.addBindValue(in_mobile);
-        qry.exec();
-    }catch(QSqlError e){
-        throw new QSqlError;
+    if (in_firstname== "" || in_surname== "" || in_address== "" || in_password== "" || in_username== "" || in_email== "" || in_mobile== "")
+    {
+        QMessageBox::information(this,"Register","Empty Values");
     }
+    else
+    {
+        try{
+            qry.addBindValue(in_username);
+            qry.addBindValue(in_firstname);
+            qry.addBindValue(in_surname);
+            qry.addBindValue(hashed_password);
+            qry.addBindValue(in_address);
+            qry.addBindValue(in_email);
+            qry.addBindValue(in_mobile);
+            qry.exec();
+        }catch(QSqlError e){
+            throw new QSqlError;
+            QMessageBox::information(this,"Register","Incorrect Value");
+        }
 
-    hide();
-    LoginDialog *loginDialog = new LoginDialog(this);
-    loginDialog->show();
+        hide();
+        LoginDialog *loginDialog = new LoginDialog(this);
+        loginDialog->show();
+    }
 
     dbconnection->discConn();
 }

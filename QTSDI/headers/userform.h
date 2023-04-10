@@ -17,6 +17,7 @@ public:
     explicit userform(QString acc, QString user, QWidget *parent = nullptr);
     ~userform();
     void changeOrderStatus(QString);
+    QString updated_status;
 
 private slots:
     void on_Logout_clicked();
@@ -29,7 +30,6 @@ private:
     Ui::userform *ui;
     QString account;
     QString log_user;
-    //void changeOrderStatus(QString);
     void setVars(QString, QString);
 };
 
