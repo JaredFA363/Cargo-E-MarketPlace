@@ -49,11 +49,53 @@ void userform::on_pushButton_clicked()
     QString in_condition = ui->condition->text();
     QString in_transCompany = ui->transCompany->text();
 
+    if (checkOrder(in_source,in_destination,in_weight,in_condition,in_transCompany,in_dimensions) == "Empty Order")
+    {
+        QMessageBox::information(this,"Order","Empty Order");
+    }
+    else if (checkOrder(in_source,in_destination,in_weight,in_condition,in_transCompany,in_dimensions) == "No Such Company")
+    {
+        QMessageBox::information(this,"Order","No Such Company");
+    }
+    else if (checkOrder(in_source,in_destination,in_weight,in_condition,in_transCompany,in_dimensions) == "Order Placed")
+    {
+        dbcon *dbconnection = new dbcon();
+        dbconnection->openConn();
+
+        QSqlQuery qry;
+        qry.prepare("INSERT INTO orders(source, destination, weight, dimensions, condition, transportcompany, orderstatus)"
+                    "VALUES (?,?,?,?,?,?,?)");
+        try{
+            qry.addBindValue(in_source);
+            qry.addBindValue(in_destination);
+            qry.addBindValue(in_weight);
+            qry.addBindValue(in_dimensions);
+            qry.addBindValue(in_condition);
+            qry.addBindValue(in_transCompany);
+            qry.addBindValue("Order Placed");
+            qry.exec();
+
+            changeOrderStatus("Order Placed");
+
+        }catch(QSqlError e){
+            throw new QSqlError;
+        }
+        dbconnection->discConn();
+    }
+    else
+    {
+        QMessageBox::information(this,"Order","Invalid Order");
+    }
+
+}
+
+QString userform::checkOrder(QString in_source, QString in_destination, QString in_weight, QString in_condition, QString in_transCompany, QString in_dimensions)
+{
     QString transCompany = "'"+in_transCompany+"'";
 
     if(in_source == "" || in_destination == "" || in_weight == "" || in_condition == "" || in_transCompany == "" || in_dimensions == "")
     {
-        QMessageBox::information(this,"Order","Invalid input");
+        return "Empty Order";
     }
     else
     {
@@ -62,32 +104,16 @@ void userform::on_pushButton_clicked()
 
         QSqlQuery query;
 
-        query.exec("SELECT username FROM transportcompany WHERE username ="+transCompany+"");
-        if(!query.exec())
+        query.exec("SELECT username FROM transportcompany WHERE username = "+transCompany+"");
+        dbconnection->discConn();
+        if(query.first() == false)
         {
-            QMessageBox::information(this,"Order","No Such Company");
+            return "No Such Company";
         }
         else{
-            QSqlQuery qry;
-            qry.prepare("INSERT INTO orders(source, destination, weight, dimensions, condition, transportcompany, orderstatus)"
-                        "VALUES (?,?,?,?,?,?,?)");
-            try{
-                qry.addBindValue(in_source);
-                qry.addBindValue(in_destination);
-                qry.addBindValue(in_weight);
-                qry.addBindValue(in_dimensions);
-                qry.addBindValue(in_condition);
-                qry.addBindValue(in_transCompany);
-                qry.addBindValue("Order Placed");
-                qry.exec();
-
-                changeOrderStatus("Order Placed");
-
-            }catch(QSqlError e){
-                throw new QSqlError;
-            }
-
+            return "Order Placed";
         }
-        dbconnection->discConn();
+
+        return "";
     }
 }

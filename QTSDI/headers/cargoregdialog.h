@@ -18,6 +18,7 @@ class CargoRegDialog : public QDialog
 public:
     explicit CargoRegDialog(QWidget *parent = nullptr);
     ~CargoRegDialog();
+    QString check_inputs(QString,QString,QString,QString,QString,QString,QString);
 
 private slots:
     void on_Confirm_clicked();

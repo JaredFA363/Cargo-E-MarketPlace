@@ -18,6 +18,7 @@ class LoginDialog : public QDialog
 public:
     explicit LoginDialog(QWidget *parent = nullptr);
     ~LoginDialog();
+    QString checkLoginDetails(QString,QString,QString);
 
 private slots:
     void on_Login_pushButton_clicked();

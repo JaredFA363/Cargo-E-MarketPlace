@@ -53,18 +53,11 @@ void driverview::on_accept_clicked()
     order_id = orderid;
     QString updated_status = "Driver "+retrieved_user+" will complete the order";
 
-    dbcon *dbconnection = new dbcon();
-    dbconnection->openConn();
-
-    QSqlQuery qry;
-    qry.prepare("SELECT orderid FROM orders WHERE orderid = "+orderid+"");
-    qry.exec();
-    dbconnection->discConn();
-    if(qry.first() == false)
+    if (checkOrderId(orderid) == false)
     {
         QMessageBox::information(this,"Order","Incorrect order id");
     }
-    else if(qry.first() == true){
+    else if (checkOrderId(orderid) == true){
         UpdateDatabaseThread* updateDatabaseThread = new UpdateDatabaseThread();
         updateDatabaseThread->orderid = orderid;
         updateDatabaseThread->updated_status = updated_status;
@@ -81,7 +74,6 @@ void driverview::on_reject_clicked()
 {
     QString orderid = ui->orderid->text();
     rejectedOrders.append(orderid);
-    qDebug() << rejectedOrders;
 
     QString rejectedOrdersStr = "'"+rejectedOrders.join("','")+"'";
 
@@ -113,10 +105,11 @@ void driverview::on_update_clicked()
     dbconnection->openConn();
 
     QString orderid = order_id;
+    QString rejectedOrdersStr = "'"+rejectedOrders.join("','")+"'";
 
     QSqlQuery qry;
     try{
-        qry.prepare("SELECT * FROM orders WHERE orderstatus = 'Transportation Company Accepted'");
+        qry.prepare("SELECT * FROM orders WHERE orderid NOT IN ("+ rejectedOrdersStr+") AND orderstatus = 'Transportation Company Accepted'");
         qry.exec();
         QSqlQueryModel *modal = new QSqlQueryModel;
         modal->setQuery(qry);
@@ -136,4 +129,23 @@ void driverview::on_update_clicked()
         throw new QSqlError;
     }
     dbconnection->discConn();
+}
+
+bool driverview::checkOrderId(QString orderid)
+{
+    dbcon *dbconnection = new dbcon();
+    dbconnection->openConn();
+
+    QSqlQuery qry;
+    qry.prepare("SELECT orderid FROM orders WHERE orderid = "+orderid+"");
+    qry.exec();
+    dbconnection->discConn();
+    if(qry.first() == false)
+    {
+        return false;
+    }
+    else if(qry.first() == true){
+        return true;
+    }
+    return false;
 }

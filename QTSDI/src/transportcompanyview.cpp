@@ -40,18 +40,10 @@ void transportcompanyview::on_accept_clicked()
     QString orderid = ui->orderId->text();
     QString updated_status = "Transportation Company Accepted";
 
-    dbcon *dbconnection = new dbcon();
-    dbconnection->openConn();
-
-    QSqlQuery qry;
-    qry.prepare("SELECT source FROM orders WHERE orderid = "+orderid+"");
-    qry.exec();
-    dbconnection->discConn();
-    if(qry.first() == false)
-    {
+    if (checkOrderId(orderid) == false){
         QMessageBox::information(this,"Order","INcorrect order id");
     }
-    else if (qry.first() == true){
+    else if (checkOrderId(orderid) == true){
         QMessageBox::information(this,"Order","Forwarded to available drivers");
 
         UpdateDatabaseThread* updateDatabaseThread = new UpdateDatabaseThread();
@@ -63,6 +55,9 @@ void transportcompanyview::on_accept_clicked()
         updateOrderStatusThread->updated_status = updated_status;
         updateOrderStatusThread->userForm = new userform(retrieved_acc, retrieved_user, this);
         updateOrderStatusThread->start();
+    }
+    else{
+        QMessageBox::information(this,"Order","Error");
     }
 }
 
@@ -101,4 +96,24 @@ void transportcompanyview::on_update_clicked()
         throw new QSqlError;
     }
     dbconnection->discConn();
+}
+
+bool transportcompanyview::checkOrderId(QString orderid)
+{
+    dbcon *dbconnection = new dbcon();
+    dbconnection->openConn();
+
+    QSqlQuery qry;
+    qry.prepare("SELECT source FROM orders WHERE orderid = "+orderid+"");
+    qry.exec();
+    dbconnection->discConn();
+    if(qry.first() == false)
+    {
+        return false;
+    }
+    else if (qry.first() == true){
+        return true;
+    }
+    return "";
+
 }

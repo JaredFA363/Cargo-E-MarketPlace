@@ -48,9 +48,16 @@ void DriverRegDialog::on_Confirm_clicked()
     TransportRegDialog *transReg = new TransportRegDialog(this);
     QString hashed_password = transReg->hash_Password(in_password);
 
-    if (in_firstname== "" || in_surname== "" || in_address== "" || in_password== "" || in_username== "" || in_email== "" || in_mobile== "" || in_ninum== "" || in_driverid== "")
+    QSqlQuery query;
+    query.prepare("SELECT * FROM drivers WHERE username = '"+in_username+"'");
+    query.exec();
+
+    if (check_inputs(in_username,in_firstname,in_surname,in_email,in_mobile,in_address,in_ninum,in_password,in_driverid) == "Message1")
     {
         QMessageBox::information(this,"Register","Empty Values");
+    }
+    else if(check_inputs(in_username,in_firstname,in_surname,in_email,in_mobile,in_address,in_ninum,in_password,in_driverid) == "Message2"){
+        QMessageBox::information(this,"Register","Invalid Username");
     }
     else
     {
@@ -83,4 +90,23 @@ void DriverRegDialog::on_ToLogin_clicked()
     hide();
     LoginDialog *loginDialog = new LoginDialog(this);
     loginDialog->show();
+}
+
+QString DriverRegDialog::check_inputs(QString in_username, QString in_firstname, QString in_surname, QString in_email, QString in_mobile, QString in_address, QString in_ninum, QString in_password, QString in_driverid)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM drivers WHERE username = '"+in_username+"'");
+    query.exec();
+
+    if (in_firstname== "" || in_surname== "" || in_address== "" || in_password== "" || in_username== "" || in_email== "" || in_mobile== "" || in_ninum== "" || in_driverid== "")
+    {
+        return "Message1";
+    }
+    else if(query.first() == true){
+        return "Message2";
+    }
+    else
+    {
+        return "Message3";
+    }
 }

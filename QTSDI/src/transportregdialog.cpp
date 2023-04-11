@@ -39,9 +39,12 @@ void TransportRegDialog::on_confirm_clicked()
     QString input_username = ui->username->text();
     QString hashed_password = hash_Password(input_password);
 
-    if (companyname == "" || input_address== "" || input_password== "" || input_username== "")
+    if (check_inputs(input_username, input_password, input_address, companyname) == "Message1")
     {
         QMessageBox::information(this,"Register","Empty Values");
+    }
+    else if(check_inputs(input_username, input_password, input_address, companyname) == "Message2"){
+        QMessageBox::information(this,"Register","Invalid Username");
     }
     else
     {
@@ -76,4 +79,23 @@ QString TransportRegDialog::hash_Password(QString password)
     QByteArray hashData = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256);
     QString hash_password = QString::fromLatin1(hashData.toHex());
     return hash_password;
+}
+
+QString TransportRegDialog::check_inputs(QString input_username,QString input_password,QString input_address,QString companyname)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM transportcompany WHERE username = '"+input_username+"'");
+    query.exec();
+
+    if (companyname == "" || input_address== "" || input_password== "" || input_username== "")
+    {
+        return "Message1";
+    }
+    else if(query.first() == true){
+        return "Message2";
+    }
+    else
+    {
+        return "Message3";
+    }
 }

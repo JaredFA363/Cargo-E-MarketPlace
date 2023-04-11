@@ -20,6 +20,7 @@ class transportcompanyview : public QDialog
 public:
     explicit transportcompanyview(QString acc, QString user, QWidget *parent = nullptr);
     ~transportcompanyview();
+    bool checkOrderId(QString);
 
 private slots:
     void on_accept_clicked();

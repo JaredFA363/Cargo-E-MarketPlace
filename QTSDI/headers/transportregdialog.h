@@ -19,6 +19,7 @@ public:
     explicit TransportRegDialog(QWidget *parent = nullptr);
     ~TransportRegDialog();
     static QString hash_Password(QString);
+    QString check_inputs(QString, QString, QString, QString);
 
 private slots:
     void on_confirm_clicked();

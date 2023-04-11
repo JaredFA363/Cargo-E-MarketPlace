@@ -18,6 +18,7 @@ public:
     ~userform();
     void changeOrderStatus(QString);
     QString updated_status;
+    QString checkOrder(QString,QString,QString,QString,QString,QString);
 
 private slots:
     void on_Logout_clicked();

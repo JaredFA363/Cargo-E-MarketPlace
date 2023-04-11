@@ -37,81 +37,115 @@ void LoginDialog::on_Login_pushButton_clicked()
     QString account_type = ui->Login_comboBox->currentText();
     QString username = ui->Login_username->text();
     QString password = ui->Login_password->text();
-    QString username_1 = "'"+username+"'";
+
     TransportRegDialog *transReg = new TransportRegDialog(this);
     QString hashed_password = transReg->hash_Password(password);
 
+    if (checkLoginDetails(account_type,username,hashed_password) == "Correct Transportation Company")
+    {
+        QMessageBox::information(this,"Login","Success");
+        hide();
+        transportcompanyview *transview = new transportcompanyview(account_type, username, this);
+        transview->show();
+    }
+    else if (checkLoginDetails(account_type,username,hashed_password) == "Correct Driver")
+    {
+        QMessageBox::information(this,"Login","Success");
+        hide();
+        driverview *Driver = new driverview(account_type, username, this);
+        Driver->show();
+    }
+    else if (checkLoginDetails(account_type,username,hashed_password) == "Correct Cargo Company")
+    {
+        QMessageBox::information(this,"Login","Success");
+        hide();
+        userform *userForm = new userform(account_type, username, this);
+        userForm->show();
+    }
+    else if (checkLoginDetails(account_type,username,hashed_password) == "Incorrect Password")
+    {
+        QMessageBox::information(this,"Login","Incorrect Password");
+    }
+    else if (checkLoginDetails(account_type,username,hashed_password) == "Incorrect Username")
+    {
+        QMessageBox::information(this,"Login","Incorrect Username");
+    }
+    else
+    {
+        QMessageBox::information(this,"Login","Incorrect Values");
+    }
+
+    dbconnection->discConn();
+}
+
+QString LoginDialog::checkLoginDetails(QString account_type,QString username,QString hashed_password)
+{
+    QString username_1 = "'"+username+"'";
     QString db_pass;
     QSqlQuery query;
 
     if (account_type == "Transportation Company")
     {
-        if(query.exec("SELECT password FROM transportcompany WHERE username ="+username_1+""))
+        query.exec("SELECT password FROM transportcompany WHERE username ="+username_1+"");
+        if(query.first() == true)
         {
-            query.first();
             QString db_pass = query.value(0).toString();
             if (db_pass == hashed_password)
             {
-                QMessageBox::information(this,"Login","Success");
-                hide();
-                transportcompanyview *transview = new transportcompanyview(account_type, username, this);
-                transview->show();
+                return "Correct Transportation Company";
             }
             else
             {
-                QMessageBox::information(this,"Login","Incorrect Password");
+                return "Incorrect Password";
             }
         }
         else
         {
-            QMessageBox::information(this,"Login","Incorrect Username");
+            return "Incorrect Username";
         }
     }
     else if (account_type == "Driver")
     {
-        if(query.exec("SELECT password FROM drivers WHERE username ="+username_1+""))
+        query.exec("SELECT password FROM drivers WHERE username ="+username_1+"");
+        if(query.first() == true)
         {
-            query.first();
             QString db_pass = query.value(0).toString();
             if (db_pass == hashed_password)
             {
-                QMessageBox::information(this,"Login","Success");
-                hide();
-                driverview *Driver = new driverview(account_type, username, this);
-                Driver->show();
+                return "Correct Driver";
             }
             else
             {
-                QMessageBox::information(this,"Login","Incorrect Password");
+                return "Incorrect Password";
             }
         }
         else
         {
-            QMessageBox::information(this,"Login","Incorrect Username");
+            return "Incorrect Username";
         }
     }
     else if (account_type == "Cargo Company")
     {
-        if(query.exec("SELECT password FROM cargoowner WHERE username ="+username_1+""))
+        query.exec("SELECT password FROM cargoowner WHERE username ="+username_1+"");
+        if(query.first() == true)
         {
-            query.first();
             QString db_pass = query.value(0).toString();
             if (db_pass == hashed_password)
             {
-                QMessageBox::information(this,"Login","Success");
-                hide();
-                userform *userForm = new userform(account_type, username, this);
-                userForm->show();
+                return "Correct Cargo Company";
             }
             else
             {
-                QMessageBox::information(this,"Login","Incorrect Password");
+                return "Incorrect Password";
             }
         }
         else
         {
-            QMessageBox::information(this,"Login","Incorrect Username");
+            return "Incorrect Username";
         }
     }
-    dbconnection->discConn();
+    else
+    {
+        return "";
+    }
 }

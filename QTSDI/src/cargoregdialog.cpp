@@ -43,9 +43,12 @@ void CargoRegDialog::on_Confirm_clicked()
     TransportRegDialog *transReg = new TransportRegDialog(this);
     QString hashed_password = transReg->hash_Password(in_password);
 
-    if (in_firstname== "" || in_surname== "" || in_address== "" || in_password== "" || in_username== "" || in_email== "" || in_mobile== "")
+    if (check_inputs(in_username,in_firstname,in_surname,in_password,in_address,in_email,in_mobile) == "Message1")
     {
         QMessageBox::information(this,"Register","Empty Values");
+    }
+    else if(check_inputs(in_username,in_firstname,in_surname,in_password,in_address,in_email,in_mobile) == "Message2"){
+        QMessageBox::information(this,"Register","Invalid Username");
     }
     else
     {
@@ -76,4 +79,23 @@ void CargoRegDialog::on_ToLogin_clicked()
     hide();
     LoginDialog *loginDialog = new LoginDialog(this);
     loginDialog->show();
+}
+
+QString CargoRegDialog::check_inputs(QString in_username,QString in_firstname,QString in_surname,QString in_password,QString in_address,QString in_email,QString in_mobile)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM cargoowner WHERE username = '"+in_username+"'");
+    query.exec();
+
+    if (in_firstname== "" || in_surname== "" || in_address== "" || in_password== "" || in_username== "" || in_email== "" || in_mobile== "")
+    {
+        return "Message1";
+    }
+    else if(query.first() == true){
+        return "Message2";
+    }
+    else
+    {
+        return "Message3";
+    }
 }

@@ -1,5 +1,6 @@
 QT       += core gui
 QT += sql
+QT += testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,7 +30,10 @@ SOURCES += \
     src/transportregdialog.cpp \
     src/updatedatabasethread.cpp \
     src/updateorderstatusthread.cpp \
-    src/userform.cpp
+    src/userform.cpp \
+    test/loginTests.cpp \
+    test/ordermanagementTests.cpp \
+    test/registerTests.cpp
 
 HEADERS += \
     headers/cargoregdialog.h \

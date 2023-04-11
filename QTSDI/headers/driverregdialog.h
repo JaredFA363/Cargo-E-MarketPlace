@@ -18,6 +18,7 @@ class DriverRegDialog : public QDialog
 public:
     explicit DriverRegDialog(QWidget *parent = nullptr);
     ~DriverRegDialog();
+    QString check_inputs(QString,QString,QString,QString,QString,QString,QString,QString,QString);
 
 private slots:
     void on_Confirm_clicked();

@@ -19,6 +19,7 @@ class driverview : public QDialog
 public:
     explicit driverview(QString acc, QString user, QWidget *parent = nullptr);
     ~driverview();
+    bool checkOrderId(QString);
 
 private slots:
     void on_profile_clicked();
