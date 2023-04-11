@@ -25,9 +25,8 @@ LoginDialog::~LoginDialog()
  *
  * \brief Login Function
  *
- * \details This Function allows users (Cargo Owner, Transportation Company, Driver)
- *          to login. Takes the inputs then compares it with the database.
- *          If correct allows user to enter program, if not throws error.
+ * \details Function for what Message to Error Display
+ *          Or whether Login is correct and can go to User Screen
 */
 
 void LoginDialog::on_Login_pushButton_clicked()
@@ -77,6 +76,17 @@ void LoginDialog::on_Login_pushButton_clicked()
 
     dbconnection->discConn();
 }
+
+/*
+ *
+ * \brief Login Checking Function
+ *
+ * \details This Function allows users (Cargo Owner, Transportation Company, Driver)
+ *          to login. Takes the inputs then compares it with the database.
+ *          If correct allows user to enter program, if not throws error.
+ *
+ * \returns QString instructing what Message to send
+*/
 
 QString LoginDialog::checkLoginDetails(QString account_type,QString username,QString hashed_password)
 {

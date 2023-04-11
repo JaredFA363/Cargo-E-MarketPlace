@@ -5,6 +5,16 @@ UpdateDatabaseThread::UpdateDatabaseThread()
 
 }
 
+/*
+ *
+ * \brief Update Database Thread
+ *
+ * \details Opens Connection.
+ *          Updates the Database Value
+ *          Closes the databse.
+ *
+*/
+
 void UpdateDatabaseThread::run()
 {
     dbcon *dbconnection = new dbcon();

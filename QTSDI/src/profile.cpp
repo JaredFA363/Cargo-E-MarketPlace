@@ -21,6 +21,15 @@ profile::~profile()
     delete ui;
 }
 
+/*
+ *
+ * \brief Get Details Function
+ *
+ * \details Displays the Details of the Logged in User.
+ *          Details retrieved From Database.
+ *
+*/
+
 void profile::getDetails()
 {
 
@@ -78,6 +87,14 @@ void profile::getDetails()
     dbconnection->discConn();
 }
 
+/*
+ *
+ * \brief Go Back Function
+ *
+ * \details Takes the User Back to the Original View
+ *
+*/
+
 void profile::on_profile_back_clicked()
 {
     hide();
@@ -101,6 +118,15 @@ void profile::setVars(QString acc_type, QString username)
     retrieved_accountType = acc_type;
     qDebug() << retrieved_accountType;
 }
+
+/*
+ *
+ * \brief Change Details Function
+ *
+ * \details Displays the Details of the Logged in User.
+ *          Then when Called Overides the current Database Values.
+ *
+*/
 
 void profile::change_details()
 {

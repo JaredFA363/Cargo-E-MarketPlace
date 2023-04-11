@@ -39,7 +39,15 @@ void userform::changeOrderStatus(QString new_status)
     ui->status->setText(new_status);
 }
 
-
+/*
+ *
+ * \brief Send Cargo Order
+ *
+ * \details Checks the inputs are correct.
+ *          Displays Error Message if incorrect.
+ *          If Correct Then Places Order and update status.
+ *
+*/
 void userform::on_pushButton_clicked()
 {
     QString in_source = ui->source->text();
@@ -88,6 +96,15 @@ void userform::on_pushButton_clicked()
     }
 
 }
+
+/*
+ *
+ * \brief Check Cargo Order Details
+ *
+ * \details Checks the inputs are correct
+ *
+ * \returns QString tell function what Message to display
+*/
 
 QString userform::checkOrder(QString in_source, QString in_destination, QString in_weight, QString in_condition, QString in_transCompany, QString in_dimensions)
 {

@@ -34,7 +34,15 @@ transportcompanyview::~transportcompanyview()
     delete ui;
 }
 
-
+/*
+ *
+ * \brief Accept Button Function
+ *
+ * \details Display the Error Message Or Forwarded Message.
+ *          Uses thread to update the database and another
+ *          to update order status.
+ *
+*/
 void transportcompanyview::on_accept_clicked()
 {
     QString orderid = ui->orderId->text();
@@ -75,6 +83,15 @@ void transportcompanyview::on_logout_clicked()
     loginDialog->show();
 }
 
+/*
+ *
+ * \brief Update Function
+ *
+ * \details Updates the Table View after an order has been accepted.
+ *          The database has to be open and closed.
+ *
+*/
+
 void transportcompanyview::on_update_clicked()
 {
     QString companyname = "'"+retrieved_user+"'";
@@ -97,6 +114,17 @@ void transportcompanyview::on_update_clicked()
     }
     dbconnection->discConn();
 }
+
+/*
+ *
+ * \brief Check Order Id Function
+ *
+ * \details Open the database. Check if order ID exists.
+ *          returns a bool and closes database
+ *
+ * \returns True or False
+ *
+*/
 
 bool transportcompanyview::checkOrderId(QString orderid)
 {

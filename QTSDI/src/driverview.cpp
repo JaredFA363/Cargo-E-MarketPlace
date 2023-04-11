@@ -47,6 +47,16 @@ void driverview::on_logout_clicked()
     loginDialog->show();
 }
 
+/*
+ *
+ * \brief Accept Button Function
+ *
+ * \details Display the Error Message Or Forwarded Message.
+ *          Uses thread to update the database and another
+ *          to update order status.
+ *
+*/
+
 void driverview::on_accept_clicked()
 {
     QString orderid = ui->orderid->text();
@@ -69,6 +79,16 @@ void driverview::on_accept_clicked()
         updateOrderStatusThread->start();
     }
 }
+
+/*
+ *
+ * \brief Reject Order Function
+ *
+ * \details Gets the order Id . Adds to a list.
+ *          When the Table View is updated then
+ *          The order will be removed.
+ *
+*/
 
 void driverview::on_reject_clicked()
 {
@@ -98,6 +118,15 @@ void driverview::on_reject_clicked()
     dbconnection->discConn();
 
 }
+
+/*
+ *
+ * \brief Update Function
+ *
+ * \details Updates the Table View after an order has been accepted.
+ *          The database has to be open and closed.
+ *
+*/
 
 void driverview::on_update_clicked()
 {
@@ -130,6 +159,17 @@ void driverview::on_update_clicked()
     }
     dbconnection->discConn();
 }
+
+/*
+ *
+ * \brief Check Order Id Function
+ *
+ * \details Open the database. Check if order ID exists.
+ *          returns a bool and closes database
+ *
+ * \returns True or False
+ *
+*/
 
 bool driverview::checkOrderId(QString orderid)
 {

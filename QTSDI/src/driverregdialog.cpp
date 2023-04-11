@@ -92,6 +92,15 @@ void DriverRegDialog::on_ToLogin_clicked()
     loginDialog->show();
 }
 
+/*
+ *
+ * \brief Check Driver Registration Details
+ *
+ * \details Checks the inputs are correct
+ *
+ * \returns QString tell function what Message to display
+*/
+
 QString DriverRegDialog::check_inputs(QString in_username, QString in_firstname, QString in_surname, QString in_email, QString in_mobile, QString in_address, QString in_ninum, QString in_password, QString in_driverid)
 {
     QSqlQuery query;

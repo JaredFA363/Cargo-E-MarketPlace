@@ -74,12 +74,30 @@ void TransportRegDialog::on_ToLogin_clicked()
     loginDialog->show();
 }
 
+/*
+ *
+ * \brief Hashes the password so it is secured
+ *
+ * \details This encrypts the password qith QCryptographic Hash
+ *
+ * \returns THe hashed Password
+*/
+
 QString TransportRegDialog::hash_Password(QString password)
 {
     QByteArray hashData = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256);
     QString hash_password = QString::fromLatin1(hashData.toHex());
     return hash_password;
 }
+
+/*
+ *
+ * \brief Check Transport Company Registration Details
+ *
+ * \details Checks the inputs are correct
+ *
+ * \returns QString tell function what Message to display
+*/
 
 QString TransportRegDialog::check_inputs(QString input_username,QString input_password,QString input_address,QString companyname)
 {

@@ -15,7 +15,7 @@ CargoRegDialog::~CargoRegDialog()
 
 /*
  *
- * \brief Cargo Owner Registration Function
+ * \brief Cargo Owner Registration Button
  *
  * \details The Cargo owner should be able to add there details to the database.
  *          The function establishes the connection eith the database.
@@ -80,6 +80,15 @@ void CargoRegDialog::on_ToLogin_clicked()
     LoginDialog *loginDialog = new LoginDialog(this);
     loginDialog->show();
 }
+
+/*
+ *
+ * \brief Check Cargo Owner Registration Details
+ *
+ * \details Checks the inputs are correct
+ *
+ * \returns QString tell function what Message to display
+*/
 
 QString CargoRegDialog::check_inputs(QString in_username,QString in_firstname,QString in_surname,QString in_password,QString in_address,QString in_email,QString in_mobile)
 {
