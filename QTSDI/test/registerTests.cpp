@@ -110,3 +110,6 @@ void registerTests::testDriverRegWithSameUsername()
 
     QCOMPARE(result,expected);
 }
+
+//QTEST_MAIN(registerTests);
+//#include "registerTests.moc";

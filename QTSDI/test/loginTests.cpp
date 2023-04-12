@@ -16,7 +16,7 @@ void loginTests::loginWithCorrectVals()
 {
     LoginDialog dialog;
 
-    QString result = dialog.checkLoginDetails("Transportation Company","test","test");
+    QString result = dialog.checkLoginDetails("Transportation Company","tc1","tc1");
     QString expected = "Correct Transportation Company";
 
     QCOMPARE(result,expected);
@@ -32,7 +32,7 @@ void loginTests::loginWithIncorrectValsUsername()
     QCOMPARE(result,expected);
 }
 
-void loginWithIncorrectValsPassword()
+void loginTests::loginWithIncorrectValsPassword()
 {
     LoginDialog dialog;
 
@@ -41,3 +41,6 @@ void loginWithIncorrectValsPassword()
 
     QCOMPARE(result,expected);
 }
+
+//QTEST_MAIN(loginTests);
+//#include "loginTests.moc";

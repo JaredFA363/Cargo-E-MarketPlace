@@ -74,7 +74,7 @@ void ordermanagementTests::testDriverAcceptWithCorrectVal()
 
     //May need to change value
     bool result = driver->checkOrderId("1");
-    bool expected = false;
+    bool expected = true;
 
     QCOMPARE(result,expected);
 }
